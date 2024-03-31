@@ -11,6 +11,9 @@ import {
   DarkerGrotesque_700Bold,
 } from "@expo-google-fonts/darker-grotesque";
 import { useEffect } from "react";
+import "@tamagui/core/reset.css";
+import { TamaguiProvider, View } from "@tamagui/core";
+
 
 SplashScreen.preventAutoHideAsync();
 
@@ -37,5 +40,9 @@ export default function Layout() {
   }
 
   // Render the children routes now that all the assets are loaded.
-  return <Slot />;
+  return (
+    <TamaguiProvider>
+      <Slot />
+    </TamaguiProvider>
+  );
 }
