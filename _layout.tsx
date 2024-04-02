@@ -12,8 +12,12 @@ import {
 } from "@expo-google-fonts/darker-grotesque";
 import { useEffect } from "react";
 import "@tamagui/core/reset.css";
-import { TamaguiProvider, View } from "@tamagui/core";
+import { TamaguiProvider } from "@tamagui/core";
+import { createTamagui, CreateTamaguiProps } from "tamagui";
+import { config } from "@tamagui/config/v3";
 
+// you usually export this from a tamagui.config.ts file
+const tamaguiConfig = createTamagui(config as CreateTamaguiProps);
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,7 +45,7 @@ export default function Layout() {
 
   // Render the children routes now that all the assets are loaded.
   return (
-    <TamaguiProvider>
+    <TamaguiProvider config={tamaguiConfig}>
       <Slot />
     </TamaguiProvider>
   );

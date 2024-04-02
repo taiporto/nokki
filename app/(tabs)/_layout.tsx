@@ -7,7 +7,7 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
       <Tabs.Screen
-        name="index"
+        name="(cards)"
         options={{
           title: "Cartões",
           tabBarIcon: ({ color }) => (
