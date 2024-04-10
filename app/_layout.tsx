@@ -1,9 +1,8 @@
 import { Stack } from "expo-router/stack";
 import "@tamagui/core/reset.css";
 import { TamaguiProvider } from "@tamagui/core";
-import { createTamagui, CreateTamaguiProps } from "tamagui";
-import { customTamaguiConfig } from "../tamagui.config";
-import { SplashScreen, Slot } from "expo-router";
+import { tamaguiConfig } from "../tamagui.config";
+import { SplashScreen } from "expo-router";
 import {
   useFonts,
   Inter_500Medium,
@@ -18,8 +17,6 @@ import {
 import { useEffect } from "react";
 
 SplashScreen.preventAutoHideAsync();
-
-const tamaguiConfig = createTamagui(customTamaguiConfig as CreateTamaguiProps);
 
 export default function AppLayout() {
   const [fontsLoaded, fontError] = useFonts({

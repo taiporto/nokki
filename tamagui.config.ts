@@ -1,5 +1,10 @@
 import { config } from "@tamagui/config/v3";
-import { createTokens } from "tamagui";
+import {
+  CreateTamaguiProps,
+  createFont,
+  createTamagui,
+  createTokens,
+} from "tamagui";
 
 const colorTokens = createTokens({
   color: {
@@ -33,7 +38,43 @@ const colorTokens = createTokens({
   zIndex: {},
 });
 
-export const customTamaguiConfig = {
+const fontInter = createFont({
+  family: "Inter",
+  size: {
+    xxs: 11,
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 20,
+    xl: 24,
+    xxl: 32,
+  },
+  face: {
+    400: { normal: "Inter_400Regular" },
+    500: { normal: "Inter_500Medium" },
+  },
+});
+
+const fontDarker = createFont({
+  family: "Darker Grotesque",
+  size: {
+    xxs: 11,
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 20,
+    xl: 24,
+    xxl: 32,
+  },
+  face: {
+    400: { normal: "DarkerGrotesque_400Regular" },
+    500: { normal: "DarkerGrotesque_500Medium" },
+    600: { normal: "DarkerGrotesque_600SemiBold" },
+    700: { normal: "DarkerGrotesque_700Bold" },
+  },
+});
+
+const customTamaguiConfig = {
   ...config,
   tokens: {
     ...colorTokens,
@@ -42,4 +83,9 @@ export const customTamaguiConfig = {
     radius: config.tokens.radius,
     zIndex: config.tokens.zIndex,
   },
+  ...fontInter,
 };
+
+export const tamaguiConfig = createTamagui(
+  customTamaguiConfig as CreateTamaguiProps
+);
