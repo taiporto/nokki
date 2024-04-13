@@ -84,8 +84,9 @@ const customTamaguiConfig = {
     zIndex: config.tokens.zIndex,
   },
   ...fontInter,
+  ...fontDarker,
 };
 
-export const tamaguiConfig = createTamagui(
-  customTamaguiConfig as CreateTamaguiProps
-);
+const tamaguiConfig = createTamagui(customTamaguiConfig as CreateTamaguiProps);
+
+export { tamaguiConfig };
