@@ -2,25 +2,21 @@ import { Button, Form, Input, Text, TextArea, View } from "tamagui";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-import { createCollection } from "../../../database/database";
-import { Collection } from "../../../types";
 import { router } from "expo-router";
+import { InsertCollection } from "../../../schema";
+import { createCollection } from "../../../database/controllers/collection/createCollection";
 
-type InputTypes = {
-  name: Collection["name"];
-  description: Collection["description"];
-};
+type InputTypes = Pick<InsertCollection, "name" | "description">;
 
 export default function CreateCollection() {
   const { control, handleSubmit } = useForm<InputTypes>();
 
-  const onSubmit: SubmitHandler<InputTypes> = (data: Collection) => {
+  const onSubmit: SubmitHandler<InputTypes> = (data: InputTypes) => {
     console.log("Entered onSubmit");
-    createCollection(data, (id?: number) => {
-      console.log("Done creating");
-      if (!id) return;
-      router.push(`/collection/[${id}]`);
-    });
+    const result = createCollection(data);
+    console.log("Result", result);
+    console.log(result.all());
+    router.push(`collections/${result.insertId}`);
   };
 
   return (
@@ -31,6 +27,7 @@ export default function CreateCollection() {
           name="name"
           control={control}
           defaultValue=""
+          rules={{ required: true }}
           render={({ field: { onChange, onBlur, value, ref } }) => (
             <Input
               onChangeText={onChange}
@@ -49,7 +46,7 @@ export default function CreateCollection() {
               placeholder="Descrição da coleção"
               onChangeText={onChange}
               onBlur={onBlur}
-              value={value}
+              value={value || ""}
             />
           )}
         />
