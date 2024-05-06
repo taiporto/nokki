@@ -14,9 +14,8 @@ export default function CreateCollection() {
   const onSubmit: SubmitHandler<InputTypes> = (data: InputTypes) => {
     console.log("Entered onSubmit");
     const result = createCollection(data);
-    console.log("Result", result);
     console.log(result.all());
-    router.push(`collections/${result.insertId}`);
+    router.push(`collections/${result.all()[0].insertedId}`);
   };
 
   return (
@@ -28,7 +27,7 @@ export default function CreateCollection() {
           control={control}
           defaultValue=""
           rules={{ required: true }}
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               onChangeText={onChange}
               onBlur={onBlur}

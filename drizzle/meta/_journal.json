@@ -1,1 +1,20 @@
-{"version":"5","dialect":"sqlite","entries":[]}
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1714600954142,
+      "tag": "0000_open_xavin",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1714601944862,
+      "tag": "0001_sweet_morgan_stark",
+      "breakpoints": true
+    }
+  ]
+}

@@ -4,4 +4,5 @@ export default {
   schema: "./schema.ts",
   out: "./drizzle",
   driver: "expo",
+  breakpoints: true,
 } satisfies Config;
