@@ -11,11 +11,15 @@ type InputTypes = Pick<Collection, "name" | "description">;
 export default function CreateCollection() {
   const { control, handleSubmit } = useForm<InputTypes>();
 
-  const onSubmit: SubmitHandler<InputTypes> = (data: InputTypes) => {
+  const onSubmit: SubmitHandler<InputTypes> = async (data: InputTypes) => {
     console.log("Entered onSubmit");
-    const result = createCollection(data);
-    console.log(result);
-    router.push(`collections/${result.insertedId}`);
+    const result = await createCollection(data);
+    if (!result) {
+      console.error("Failed to create collection");
+      return;
+    }
+
+    router.push(`(tabs)/(cards)/collection/${result.insertedId}`);
   };
 
   return (

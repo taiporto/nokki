@@ -1,5 +1,6 @@
 export type Collection = {
   id: number;
+  uuid: string;
   name: string;
   description: string | null;
 };
