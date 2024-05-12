@@ -1,1 +1,0 @@
-ALTER TABLE `cards` RENAME TO `communicationcards`;

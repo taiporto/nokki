@@ -15,13 +15,8 @@ import {
   DarkerGrotesque_700Bold,
 } from "@expo-google-fonts/darker-grotesque";
 import { useEffect } from "react";
-import { initDatabase } from "../database/initDatabase";
-import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
-import migrations from "../drizzle/migrations";
 
 SplashScreen.preventAutoHideAsync();
-
-const db = initDatabase();
 
 export default function AppLayout() {
   const [fontsLoaded, fontError] = useFonts({
@@ -33,22 +28,16 @@ export default function AppLayout() {
     DarkerGrotesque_700Bold,
   });
 
-  const { success: migrationSuccess, error: migrationError } = useMigrations(
-    db,
-    migrations
-  );
-
   useEffect(() => {
-    if (fontsLoaded || fontError || migrationError) {
+    if (fontsLoaded || fontError) {
       // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
       SplashScreen.hideAsync();
-      migrationError && console.error("Migration error", migrationError);
       fontError && console.error("Font error", fontError);
     }
-  }, [fontsLoaded, fontError, migrationError]);
+  }, [fontsLoaded, fontError]);
 
   // Prevent rendering until the font has loaded or an error was returned
-  if ((!fontsLoaded && !fontError) || migrationError || !migrationSuccess) {
+  if (!fontsLoaded && !fontError) {
     return null;
   }
 

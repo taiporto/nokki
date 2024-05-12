@@ -3,10 +3,10 @@ import { Button, Form, Input, Text, TextArea, View } from "tamagui";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import { router } from "expo-router";
-import { InsertCollection } from "../../../schema";
 import { createCollection } from "../../../database/controllers/collection/createCollection";
+import { Collection } from "../../../types";
 
-type InputTypes = Pick<InsertCollection, "name" | "description">;
+type InputTypes = Pick<Collection, "name" | "description">;
 
 export default function CreateCollection() {
   const { control, handleSubmit } = useForm<InputTypes>();
@@ -14,8 +14,8 @@ export default function CreateCollection() {
   const onSubmit: SubmitHandler<InputTypes> = (data: InputTypes) => {
     console.log("Entered onSubmit");
     const result = createCollection(data);
-    console.log(result.all());
-    router.push(`collections/${result.all()[0].insertedId}`);
+    console.log(result);
+    router.push(`collections/${result.insertedId}`);
   };
 
   return (
