@@ -20,8 +20,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function AppLayout() {
   const [fontsLoaded, fontError] = useFonts({
-    Inter_500Medium,
-    Inter_400Regular,
+    InterMedium: Inter_500Medium,
+    Inter: Inter_400Regular,
     DarkerGrotesque_400Regular,
     DarkerGrotesque_500Medium,
     DarkerGrotesque_600SemiBold,

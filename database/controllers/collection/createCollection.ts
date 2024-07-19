@@ -10,10 +10,11 @@ export const createCollection = async (
 ): Promise<{ insertedId: number } | null> => {
   try {
     const collections = JSON.parse(
-      (await AsyncStorage.getItem("@collections")) || "[]"
+      (await AsyncStorage.getItem("@collections")) ?? "[]"
     );
     const id = collections.length + 1;
     const uuid = uuidv4();
+
     await AsyncStorage.setItem(
       "@collections",
       JSON.stringify([...collections, { ...collectionData, id, uuid }])

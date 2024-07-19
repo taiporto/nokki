@@ -49,7 +49,7 @@ export default function CreateCollection() {
               placeholder="Descrição da coleção"
               onChangeText={onChange}
               onBlur={onBlur}
-              value={value || ""}
+              value={value ?? ""}
             />
           )}
         />
