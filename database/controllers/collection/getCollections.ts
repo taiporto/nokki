@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Collection } from "../../../types";
 import { db } from "../..";
 
