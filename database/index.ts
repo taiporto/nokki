@@ -1,8 +1,16 @@
-import { config } from "dotenv";
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
+import "react-native-url-polyfill/auto";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createClient } from "@supabase/supabase-js";
 
-config({ path: ".env" });
-
-const client = postgres(process.env.DATABASE_URL!);
-export const db = drizzle(client);
+export const db = createClient(
+  process.env.EXPO_PUBLIC_SUPABASE_URL ?? "",
+  process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? "",
+  {
+    auth: {
+      storage: AsyncStorage,
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: false,
+    },
+  }
+);

@@ -17,7 +17,6 @@
     "@tamagui/config": "1.94.5",
     "@tamagui/lucide-icons": "1.94.5",
     "babel-plugin-inline-import": "^3.0.0",
-    "drizzle-orm": "^0.32.0",
     "expo": "^51.0.2",
     "expo-constants": "16.0.1",
     "expo-google-fonts": "^0.0.0",
@@ -34,14 +33,11 @@
     "react-native-screens": "~3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-url-polyfill": "^2.0.0",
-    "tamagui": "1.94.5",
-    "uuid": "^9.0.1"
+    "tamagui": "1.94.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.79",
-    "@types/uuid": "^9.0.8",
-    "drizzle-kit": "^0.23.0",
     "typescript": "5.3.3"
   },
   "private": true
