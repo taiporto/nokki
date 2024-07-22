@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { AppState } from "react-native";
 import { Button, Form, Input, Spinner, View } from "tamagui";
 import { makeRedirectUri } from "expo-auth-session";
-import { auth } from "../../../auth";
-import { AppState } from "react-native";
+import supabase from "../../../lib/supabase";
 
 AppState.addEventListener("change", (state) => {
   if (state === "active") {
-    auth.startAutoRefresh();
+    supabase.auth.startAutoRefresh();
   } else {
-    auth.stopAutoRefresh();
+    supabase.auth.stopAutoRefresh();
   }
 });
 
@@ -21,7 +21,7 @@ export default function Auth() {
 
   const onSubmit = async () => {
     setStatus("submitting");
-    const { error } = await auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
         emailRedirectTo: redirectTo,
@@ -47,9 +47,9 @@ export default function Auth() {
   }, [status]);
 
   return (
-    <View>
+    <View padding={30}>
       <Form onSubmit={onSubmit}>
-        <Input value={email} onChangeText={(text) => setEmail(text)} />
+        <Input value={email} onChangeText={(text: string) => setEmail(text)} />
         <Form.Trigger disabled={status !== "off"} asChild>
           <Button icon={status === "submitting" ? <Spinner /> : undefined}>
             Submit

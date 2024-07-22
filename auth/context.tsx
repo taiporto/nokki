@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { Session, User } from "@supabase/supabase-js";
 
-import { auth } from ".";
+import supabase from "../lib/supabase";
 
 export const AuthContext = createContext<{
   user: User | null;
@@ -17,12 +17,12 @@ export const AuthContextProvider = (props: any) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
       setUserSession(session);
       setUser(session?.user ?? null);
     });
 
-    const { data: authListener } = auth.onAuthStateChange(
+    const { data: authListener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         console.log(`Supabase auth event: ${event}`);
         setUserSession(session);
