@@ -25,6 +25,6 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": ["expo-router"],
-    "scheme": "nokki"
+    "scheme": "com.nokki"
   }
 }

@@ -1,8 +1,7 @@
-import { Stack } from "expo-router/stack";
 import "@tamagui/core/reset.css";
 import { TamaguiProvider } from "@tamagui/core";
 import { tamaguiConfig } from "../tamagui.config";
-import { SplashScreen } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
 import {
   useFonts,
   Inter_500Medium,
@@ -15,6 +14,8 @@ import {
   DarkerGrotesque_700Bold,
 } from "@expo-google-fonts/darker-grotesque";
 import { useEffect } from "react";
+import App from "./App";
+import { AuthContextProvider } from "../auth/context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -44,9 +45,9 @@ export default function AppLayout() {
   // Render the children routes now that all the assets are loaded.
   return (
     <TamaguiProvider config={tamaguiConfig}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
+      {/* <AuthContextProvider> */}
+      <App />
+      {/* </AuthContextProvider> */}
     </TamaguiProvider>
   );
 }
