@@ -1,7 +1,7 @@
 import "@tamagui/core/reset.css";
 import { TamaguiProvider } from "@tamagui/core";
 import { tamaguiConfig } from "../tamagui.config";
-import { SplashScreen, Stack } from "expo-router";
+import { SplashScreen } from "expo-router";
 import {
   useFonts,
   Inter_500Medium,
