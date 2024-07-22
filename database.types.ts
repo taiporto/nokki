@@ -9,57 +9,65 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      cards_table: {
+      cards: {
         Row: {
-          collection_id: number
+          collection_id: number | null
           content: string | null
           created_at: string
           id: number
           is_favorite: boolean
           title: string
-          updated_at: string
-          uuid: string
+          uuid: string | null
         }
         Insert: {
-          collection_id: number
+          collection_id?: number | null
           content?: string | null
           created_at?: string
           id?: number
           is_favorite?: boolean
           title: string
-          updated_at?: string
-          uuid?: string
+          uuid?: string | null
         }
         Update: {
-          collection_id?: number
+          collection_id?: number | null
           content?: string | null
           created_at?: string
           id?: number
           is_favorite?: boolean
           title?: string
-          updated_at?: string
-          uuid?: string
+          uuid?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "cards_collection_id_fkey"
+            columns: ["collection_id"]
+            isOneToOne: false
+            referencedRelation: "collections"
+            referencedColumns: ["id"]
+          },
+        ]
       }
-      collections_table: {
+      collections: {
         Row: {
+          created_at: string
           description: string | null
           id: number
           name: string
-          uuid: string
+          uuid: string | null
         }
         Insert: {
+          created_at?: string
           description?: string | null
           id?: number
           name: string
-          uuid?: string
+          uuid?: string | null
         }
         Update: {
+          created_at?: string
           description?: string | null
           id?: number
           name?: string
-          uuid?: string
+          uuid?: string | null
         }
         Relationships: []
       }

@@ -1,11 +1,9 @@
-import { Database } from "./database.types";
+import { Tables, TablesInsert } from "./database.types";
 
-export type Collection =
-  Database["public"]["Tables"]["collections_table"]["Row"];
+export type Collection = Tables<"collections">;
 
-export type InsertCollection =
-  Database["public"]["Tables"]["collections_table"]["Insert"];
+export type InsertCollection = TablesInsert<"collections">;
 
-export type Card = Database["public"]["Tables"]["cards_table"]["Row"];
+export type Card = Tables<"cards">;
 
-export type InsertCard = Database["public"]["Tables"]["cards_table"]["Insert"];
+export type InsertCard = TablesInsert<"cards">;
