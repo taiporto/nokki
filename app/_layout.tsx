@@ -45,9 +45,9 @@ export default function AppLayout() {
   // Render the children routes now that all the assets are loaded.
   return (
     <TamaguiProvider config={tamaguiConfig}>
-      {/* <AuthContextProvider> */}
-      <App />
-      {/* </AuthContextProvider> */}
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
     </TamaguiProvider>
   );
 }

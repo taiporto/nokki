@@ -6,31 +6,29 @@ import { AuthContextProvider } from "../../auth/context";
 
 export default function TabLayout() {
   return (
-    <AuthContextProvider>
-      <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
-        <Tabs.Screen
-          name="(cards)"
-          options={{
-            title: "Cartões",
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons
-                size={28}
-                name="cards-playing-outline"
-                color={color}
-              />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="profile"
-          options={{
-            title: "Profile",
-            tabBarIcon: ({ color }) => (
-              <FontAwesome size={28} name="user" color={color} />
-            ),
-          }}
-        />
-      </Tabs>
-    </AuthContextProvider>
+    <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
+      <Tabs.Screen
+        name="(cards)"
+        options={{
+          title: "Cartões",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              size={28}
+              name="cards-playing-outline"
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="user" color={color} />
+          ),
+        }}
+      />
+    </Tabs>
   );
 }
