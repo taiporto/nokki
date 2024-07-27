@@ -53,6 +53,7 @@ export type Database = {
           description: string | null
           id: number
           name: string
+          user_id: string | null
           uuid: string | null
         }
         Insert: {
@@ -60,6 +61,7 @@ export type Database = {
           description?: string | null
           id?: number
           name: string
+          user_id?: string | null
           uuid?: string | null
         }
         Update: {
@@ -67,9 +69,18 @@ export type Database = {
           description?: string | null
           id?: number
           name?: string
+          user_id?: string | null
           uuid?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "collections_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
