@@ -7,8 +7,8 @@ export default function CardView() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="index" />
-      <Stack.Screen name="singleCard" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="singleCard" options={{ headerShown: false }} />
     </Stack>
   );
 }

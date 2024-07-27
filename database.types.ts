@@ -17,6 +17,7 @@ export type Database = {
           id: number
           is_favorite: boolean
           title: string
+          user_uuid: string | null
           uuid: string | null
         }
         Insert: {
@@ -26,6 +27,7 @@ export type Database = {
           id?: number
           is_favorite?: boolean
           title: string
+          user_uuid?: string | null
           uuid?: string | null
         }
         Update: {
@@ -35,6 +37,7 @@ export type Database = {
           id?: number
           is_favorite?: boolean
           title?: string
+          user_uuid?: string | null
           uuid?: string | null
         }
         Relationships: [
@@ -45,6 +48,13 @@ export type Database = {
             referencedRelation: "collections"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "cards_user_uuid_fkey"
+            columns: ["user_uuid"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
         ]
       }
       collections: {
@@ -53,7 +63,7 @@ export type Database = {
           description: string | null
           id: number
           name: string
-          user_id: string | null
+          user_uuid: string | null
           uuid: string | null
         }
         Insert: {
@@ -61,7 +71,7 @@ export type Database = {
           description?: string | null
           id?: number
           name: string
-          user_id?: string | null
+          user_uuid?: string | null
           uuid?: string | null
         }
         Update: {
@@ -69,13 +79,13 @@ export type Database = {
           description?: string | null
           id?: number
           name?: string
-          user_id?: string | null
+          user_uuid?: string | null
           uuid?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "collections_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: "collections_user_uuid_fkey"
+            columns: ["user_uuid"]
             isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]

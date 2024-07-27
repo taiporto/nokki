@@ -15,7 +15,6 @@ import {
 } from "@expo-google-fonts/darker-grotesque";
 import { useEffect } from "react";
 import { AuthContextProvider, useAuth } from "../auth/context";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { AppState } from "react-native";
 import supabase from "../lib/supabase";
 
@@ -31,7 +30,7 @@ export default function AppLayout() {
     DarkerGrotesque_700Bold,
   });
 
-  const { session } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
@@ -58,7 +57,7 @@ export default function AppLayout() {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <AuthContextProvider>
-        {session ? (
+        {isLoggedIn ? (
           <Stack>
             <Stack.Screen name="(app)" options={{ headerShown: false }} />
           </Stack>
