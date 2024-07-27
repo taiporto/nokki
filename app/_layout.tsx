@@ -1,7 +1,7 @@
 import "@tamagui/core/reset.css";
 import { TamaguiProvider } from "@tamagui/core";
 import { tamaguiConfig } from "../tamagui.config";
-import { SplashScreen } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
 import {
   useFonts,
   Inter_500Medium,
@@ -14,8 +14,10 @@ import {
   DarkerGrotesque_700Bold,
 } from "@expo-google-fonts/darker-grotesque";
 import { useEffect } from "react";
-import App from "./App";
-import { AuthContextProvider } from "../auth/context";
+import { AuthContextProvider, useAuth } from "../auth/context";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { AppState } from "react-native";
+import supabase from "../lib/supabase";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,6 +30,8 @@ export default function AppLayout() {
     DarkerGrotesque_600SemiBold,
     DarkerGrotesque_700Bold,
   });
+
+  const { session } = useAuth();
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
@@ -46,7 +50,16 @@ export default function AppLayout() {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <AuthContextProvider>
-        <App />
+        {session ? (
+          <Stack>
+            <Stack.Screen name="(app)" options={{ headerShown: false }} />
+          </Stack>
+        ) : (
+          <Stack>
+            <Stack.Screen name="login" options={{ headerShown: false }} />
+            <Stack.Screen name="signup" options={{ headerShown: false }} />
+          </Stack>
+        )}
       </AuthContextProvider>
     </TamaguiProvider>
   );

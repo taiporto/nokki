@@ -3,8 +3,8 @@ import { Button, Form, Input, Text, TextArea, View } from "tamagui";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import { router } from "expo-router";
-import { createCollection } from "../../../database/controllers/collection/createCollection";
-import { Collection } from "../../../types";
+import { createCollection } from "../../../../database/controllers/collection/createCollection";
+import { Collection } from "../../../../types";
 
 type InputTypes = Pick<Collection, "name" | "description">;
 

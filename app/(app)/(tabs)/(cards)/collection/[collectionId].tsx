@@ -1,7 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
-import { getCollectionById } from "../../../../database/controllers/collection/getCollections";
+import { getCollectionById } from "../../../../../database/controllers/collection/getCollections";
 import { useEffect, useState } from "react";
-import { Collection } from "../../../../types";
+import { Collection } from "../../../../../types";
 import { Text } from "tamagui";
 
 export default function CollectionPage() {
