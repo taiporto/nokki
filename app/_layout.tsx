@@ -39,6 +39,14 @@ export default function AppLayout() {
       SplashScreen.hideAsync();
       fontError && console.error("Font error", fontError);
     }
+
+    AppState.addEventListener("change", (state) => {
+      if (state === "active") {
+        supabase.auth.startAutoRefresh();
+      } else {
+        supabase.auth.stopAutoRefresh();
+      }
+    });
   }, [fontsLoaded, fontError]);
 
   // Prevent rendering until the font has loaded or an error was returned
