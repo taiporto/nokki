@@ -12,6 +12,7 @@ const colorTokens = createTokens({
     secondary: "#18031F",
     tertiary: "#18031F",
     background: "#F6F6F6",
+    colorBackground: "#FDFBFF",
     foreground: "#18031F",
     purple100: "#ECD8F3",
     purple200: "#D5A6E5",
@@ -41,13 +42,13 @@ const colorTokens = createTokens({
 const fontInter = createFont({
   family: "Inter",
   size: {
-    xxs: 11,
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 20,
-    xl: 24,
-    xxl: 32,
+    1: 11,
+    2: 12,
+    3: 14,
+    4: 16,
+    5: 20,
+    6: 24,
+    7: 32,
   },
   face: {
     400: { normal: "Inter_400Regular" },
@@ -58,13 +59,13 @@ const fontInter = createFont({
 const fontDarker = createFont({
   family: "Darker Grotesque",
   size: {
-    xxs: 11,
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 20,
-    xl: 24,
-    xxl: 32,
+    1: 11,
+    2: 12,
+    3: 14,
+    4: 16,
+    5: 20,
+    6: 24,
+    7: 32,
   },
   face: {
     400: { normal: "DarkerGrotesque_400Regular" },
@@ -85,6 +86,10 @@ const customTamaguiConfig = {
   },
   ...fontInter,
   ...fontDarker,
+  fonts: {
+    heading: fontDarker,
+    darker: fontDarker,
+  },
 };
 
 const tamaguiConfig = createTamagui(customTamaguiConfig as CreateTamaguiProps);

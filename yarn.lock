@@ -4478,6 +4478,11 @@ expo-dev-menu@5.0.16:
     expo-dev-menu-interface "1.8.3"
     semver "^7.5.4"
 
+expo-doctor@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/expo-doctor/-/expo-doctor-1.9.0.tgz#b9dc139e946310c956240f80b8c6c34d3e91c3b8"
+  integrity sha512-mCkOqkQS2s55p4pKWPWtiwe15ZBUYOPuKrBSJzZieey5cjsc2msrCW8W8nfNz/rWx89usEQtCYFPzJtifZX+sw==
+
 expo-file-system@~17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-17.0.1.tgz#b9f8af8c1c06ec71d96fd7a0d2567fa9e1c88f15"
@@ -4495,6 +4500,11 @@ expo-google-fonts@^0.0.0:
   resolved "https://registry.yarnpkg.com/expo-google-fonts/-/expo-google-fonts-0.0.0.tgz#1e0f91c9858095e707cb69946d9332954e14eb77"
   integrity sha512-SpY1N5ZHGbNXuvN8s3E2HxjlcxR5NHWn72Uy8wl0uZJ0ueWd+JfTUXwZzfuF638WeTdgJKztRy2MWfuMORQ1yQ==
 
+expo-image@~1.12.13:
+  version "1.12.13"
+  resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-1.12.13.tgz#82a8263c4c2bae3be70241e304c28e5b74956d23"
+  integrity sha512-Dmuc5qmkIsl1nFj8C3Ux3wL2bN4QYW4dM9fkGA8kYiP5Fxf1lT36ldkHk2O2lPFRSFJDvLxT8Tz+7GTko5fzwQ==
+
 expo-json-utils@~0.13.0:
   version "0.13.1"
   resolved "https://registry.yarnpkg.com/expo-json-utils/-/expo-json-utils-0.13.1.tgz#e49b697198e11c573d346f08ab91c467095934a9"
@@ -4504,6 +4514,11 @@ expo-keep-awake@~13.0.2:
   version "13.0.2"
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-13.0.2.tgz#5ef31311a339671eec9921b934fdd90ab9652b0e"
   integrity sha512-kKiwkVg/bY0AJ5q1Pxnm/GvpeB6hbNJhcFsoOWDh2NlpibhCLaHL826KHUM+WsnJRbVRxJ+K9vbPRHEMvFpVyw==
+
+expo-linear-gradient@~13.0.2:
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-13.0.2.tgz#21bd7bc7c71ef4f7c089521daa16db729d2aec5f"
+  integrity sha512-EDcILUjRKu4P1rtWcwciN6CSyGtH7Bq4ll3oTRV7h3h8oSzSilH1g6z7kTAMlacPBKvMnkkWOGzW6KtgMKEiTg==
 
 expo-linking@6.3.1, expo-linking@~6.3.0:
   version "6.3.1"
