@@ -5,12 +5,16 @@ import { Button, ButtonProps } from "tamagui";
 export default function BackButton(props: ButtonProps) {
   return (
     <Button
-      icon={<ArrowLeft />}
       onPress={() => router.back()}
-      paddingHorizontal={12}
-      paddingVertical={10}
+      paddingHorizontal={8}
+      paddingVertical={8}
       backgroundColor="transparent"
+      fontSize={"$7"}
       {...props}
-    />
+    >
+      <Button.Icon>
+        <ArrowLeft size="$2" />
+      </Button.Icon>
+    </Button>
   );
 }

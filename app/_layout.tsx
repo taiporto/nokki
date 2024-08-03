@@ -2,17 +2,8 @@ import "@tamagui/core/reset.css";
 import { TamaguiProvider } from "@tamagui/core";
 import { tamaguiConfig } from "../tamagui.config";
 import { SplashScreen, Stack } from "expo-router";
-import {
-  useFonts,
-  // Inter_500Medium,
-  // Inter_400Regular,
-} from "@expo-google-fonts/inter";
-// import {
-//   DarkerGrotesque_400Regular,
-//   DarkerGrotesque_500Medium,
-//   DarkerGrotesque_600SemiBold,
-//   DarkerGrotesque_700Bold,
-// } from "@expo-google-fonts/darker-grotesque";
+import { useFonts } from "@expo-google-fonts/inter";
+import { RootSiblingParent } from "react-native-root-siblings";
 import { useEffect } from "react";
 import { AuthContextProvider, useAuth } from "../auth/context";
 import { AppState } from "react-native";
@@ -57,18 +48,20 @@ export default function AppLayout() {
   // Render the children routes now that all the assets are loaded.
   return (
     <TamaguiProvider config={tamaguiConfig}>
-      <AuthContextProvider>
-        {isLoggedIn ? (
-          <Stack>
-            <Stack.Screen name="(app)" options={{ headerShown: false }} />
-          </Stack>
-        ) : (
-          <Stack>
-            <Stack.Screen name="login" options={{ headerShown: false }} />
-            <Stack.Screen name="signup" options={{ headerShown: false }} />
-          </Stack>
-        )}
-      </AuthContextProvider>
+      <RootSiblingParent>
+        <AuthContextProvider>
+          {isLoggedIn ? (
+            <Stack>
+              <Stack.Screen name="(app)" options={{ headerShown: false }} />
+            </Stack>
+          ) : (
+            <Stack>
+              <Stack.Screen name="login" options={{ headerShown: false }} />
+              <Stack.Screen name="signup" options={{ headerShown: false }} />
+            </Stack>
+          )}
+        </AuthContextProvider>
+      </RootSiblingParent>
     </TamaguiProvider>
   );
 }

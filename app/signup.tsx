@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Form, Label, Spinner, Stack, View } from "tamagui";
+import { Form, Spinner, Stack, View } from "tamagui";
 import supabase from "../lib/supabase";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
+
+import Toast from "react-native-root-toast";
 
 import BackgroundGradient from "./_components/BackgroundGradient";
 import PageTitle from "./_components/PageTitle";
@@ -21,6 +23,23 @@ export default function Signup() {
 
   const onSubmit = async () => {
     setStatus("submitting");
+
+    if (!firstName || !email || !password || !confirmPassword) {
+      Toast.show("Preencha todos os campos.", {
+        duration: Toast.durations.SHORT,
+      });
+      setStatus("off");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Toast.show("As senhas não são iguais.", {
+        duration: Toast.durations.SHORT,
+      });
+      setStatus("off");
+      return;
+    }
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -43,62 +62,50 @@ export default function Signup() {
   };
 
   return (
-    <View>
-      {/* <BackgroundGradient /> */}
+    <View height="100%">
+      <BackgroundGradient />
       <SafeAreaView>
-      <Stack paddingHorizontal={16}>
-        <BackButton marginBottom={22} />
-        <Stack
-          paddingHorizontal={34}
-          gap={48}
-          alignItems="center"
-          justifyContent="center"
-        >
-          <PageTitle
-            title="Crie sua conta"
-            subtitle="Seus cartões e coleções estarão associados à sua conta."
-          />
-          <Form onSubmit={onSubmit} gap={24} width="100%">
-            <View>
-              <Label>Nome</Label>
+        <Stack padding={16}>
+          <BackButton marginTop={18} alignSelf="flex-start" />
+          <Stack paddingHorizontal={28} gap={40}>
+            <PageTitle
+              title="Crie sua conta"
+              subtitle="Seus cartões e coleções estarão associados à sua conta."
+            />
+            <Form onSubmit={onSubmit} gap={32} width="100%">
               <Input
+                placeholder="Nome"
                 value={firstName}
                 onChangeText={(text: string) => setFirstName(text)}
               />
-            </View>
-            <View>
-              <Label>E-mail</Label>
               <Input
-                placeholder="email@exemplo.com"
+                placeholder="E-mail"
                 value={email}
                 keyboardType="email-address"
                 onChangeText={(text: string) => setEmail(text)}
               />
-            </View>
-            <View>
-              <Label>Crie uma senha</Label>
               <Input
+                placeholder="Crie uma senha"
                 value={password}
                 secureTextEntry
                 onChangeText={(text: string) => setPassword(text)}
               />
-            </View>
-            <View>
-              <Label>Repita a senha</Label>
               <Input
+                placeholder="Confirme a senha"
                 value={confirmPassword}
                 secureTextEntry
                 onChangeText={(text: string) => setConfirmPassword(text)}
               />
-            </View>
-            <Form.Trigger disabled={status !== "off"} asChild>
-              <Button icon={status === "submitting" ? <Spinner /> : undefined}>
-                Cadastrar
-              </Button>
-            </Form.Trigger>
-          </Form>
+              <Form.Trigger disabled={status !== "off"} asChild>
+                <Button
+                  icon={status === "submitting" ? <Spinner /> : undefined}
+                >
+                  Cadastrar
+                </Button>
+              </Form.Trigger>
+            </Form>
+          </Stack>
         </Stack>
-      </Stack>
       </SafeAreaView>
     </View>
   );

@@ -30,6 +30,7 @@ const colorTokens = createTokens({
     neutral700: "#525053",
     neutral800: "#2C2A2E",
     neutral900: "#222123",
+    neutral1000: "#171718",
   },
   size: {},
   space: {},
@@ -71,9 +72,9 @@ const darkerFont = createFont({
     6: 24,
     7: 32,
   },
-  lineHeight: config.fonts.heading.lineHeight,
-  weight: config.fonts.heading.weight,
-  letterSpacing: config.fonts.heading.letterSpacing,
+  lineHeight: config.fonts.body.lineHeight,
+  weight: config.fonts.body.weight,
+  letterSpacing: config.fonts.body.letterSpacing,
   face: {
     normal: { normal: "DarkerGrotesque-Regular" },
     bold: { normal: "DarkerGrotesque-Bold" },
@@ -96,6 +97,7 @@ const customTamaguiConfig = {
   fonts: {
     body: interFont,
     heading: darkerFont,
+    darker: darkerFont,
   },
 };
 
