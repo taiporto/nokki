@@ -51,13 +51,21 @@ export default function AppLayout() {
       <RootSiblingParent>
         <AuthContextProvider>
           {isLoggedIn ? (
-            <Stack>
-              <Stack.Screen name="(app)" options={{ headerShown: false }} />
+            <Stack
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen name="(app)" />
             </Stack>
           ) : (
-            <Stack>
-              <Stack.Screen name="login" options={{ headerShown: false }} />
-              <Stack.Screen name="signup" options={{ headerShown: false }} />
+            <Stack
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen name="login" />
+              <Stack.Screen name="signup" />
             </Stack>
           )}
         </AuthContextProvider>

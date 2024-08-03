@@ -1,8 +1,13 @@
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { router } from "expo-router";
-import { Button, ButtonProps } from "tamagui";
+import { Button, ButtonProps, SizableTextProps } from "tamagui";
 
-export default function BackButton(props: ButtonProps) {
+export default function BackButton({
+  size = "$2",
+  ...props
+}: ButtonProps & {
+  size?: SizableTextProps["size"];
+}) {
   return (
     <Button
       onPress={() => router.back()}
@@ -18,7 +23,7 @@ export default function BackButton(props: ButtonProps) {
       {...props}
     >
       <Button.Icon>
-        <ArrowLeft size="$2" />
+        <ArrowLeft size={size} />
       </Button.Icon>
     </Button>
   );

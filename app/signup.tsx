@@ -67,7 +67,7 @@ export default function Signup() {
       <BackgroundGradient />
       <SafeAreaView>
         <Stack padding={16}>
-          <BackButton marginTop={18} alignSelf="flex-start" />
+          <BackButton marginTop={18} alignSelf="flex-start" size="$2" />
           <Stack paddingHorizontal={28} gap={40}>
             <PageTitle
               title="Crie sua conta"
