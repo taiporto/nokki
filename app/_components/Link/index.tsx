@@ -1,9 +1,23 @@
 import { Link as ExpoLink } from "expo-router";
-import { LinkProps as ExpoLinkProps } from "expo-router/build/link/Link";
+import { ComponentProps } from "react";
 
-import { useTheme } from "tamagui";
+import { styled, Text } from "tamagui";
 
-export default function Link(props: ExpoLinkProps) {
-  const { tertiary } = useTheme();
-  return <ExpoLink style={{ color: tertiary?.val() }} {...props} />;
+type LinkProps = ComponentProps<typeof ExpoLink>;
+
+const StyledText = styled(Text, {
+  color: "$foreground",
+  textDecorationLine: "underline",
+  fontWeight: 500,
+  pressStyle: {
+    opacity: 0.5,
+  },
+});
+
+export default function Link({ children, ...props }: LinkProps) {
+  return (
+    <ExpoLink {...props} asChild>
+      <StyledText>{children}</StyledText>
+    </ExpoLink>
+  );
 }

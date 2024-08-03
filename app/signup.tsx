@@ -11,6 +11,7 @@ import PageTitle from "./_components/PageTitle";
 import Input from "./_components/Input";
 import BackButton from "./_components/BackButton";
 import Button from "./_components/Button";
+import { PasswordInput } from "./_components/PasswordInput";
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -84,16 +85,14 @@ export default function Signup() {
                 keyboardType="email-address"
                 onChangeText={(text: string) => setEmail(text)}
               />
-              <Input
+              <PasswordInput
                 placeholder="Crie uma senha"
                 value={password}
-                secureTextEntry
                 onChangeText={(text: string) => setPassword(text)}
               />
-              <Input
+              <PasswordInput
                 placeholder="Confirme a senha"
                 value={confirmPassword}
-                secureTextEntry
                 onChangeText={(text: string) => setConfirmPassword(text)}
               />
               <Form.Trigger disabled={status !== "off"} asChild>

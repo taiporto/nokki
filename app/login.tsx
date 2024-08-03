@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Form, Image, Spinner, Stack } from "tamagui";
 import supabase from "../lib/supabase";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BackgroundGradient from "./_components/BackgroundGradient";
 
 import Logo from "../assets/logo.png";
 import Input from "./_components/Input";
 import Button from "./_components/Button";
+import Link from "./_components/Link";
+import { PasswordInput } from "./_components/PasswordInput";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -67,11 +69,10 @@ export default function Login() {
                 keyboardType="email-address"
                 onChangeText={(text: string) => setEmail(text)}
               />
-              <Input
+              <PasswordInput
                 value={password}
                 placeholder="Senha"
                 onChangeText={(text: string) => setPassword(text)}
-                secureTextEntry
               />
               <Form.Trigger asChild>
                 <Button

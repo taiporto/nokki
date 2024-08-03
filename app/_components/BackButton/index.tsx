@@ -10,6 +10,11 @@ export default function BackButton(props: ButtonProps) {
       paddingVertical={8}
       backgroundColor="transparent"
       fontSize={"$7"}
+      pressStyle={{
+        borderColor: "transparent",
+        backgroundColor: "transparent",
+        opacity: 0.5,
+      }}
       {...props}
     >
       <Button.Icon>

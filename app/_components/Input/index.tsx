@@ -4,7 +4,7 @@ import {
   InputProps as TamaguiInputProps,
 } from "tamagui";
 
-type InputProps = TamaguiInputProps;
+export type InputProps = TamaguiInputProps;
 
 const StyledInput = styled(TamaguiInput, {
   height: 56,
