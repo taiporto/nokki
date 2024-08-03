@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Image, Spinner, Stack, Button } from "tamagui";
+import { Form, Image, Spinner, Stack } from "tamagui";
 import supabase from "../lib/supabase";
 import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -7,7 +7,7 @@ import BackgroundGradient from "./_components/BackgroundGradient";
 
 import Logo from "../assets/logo.png";
 import Input from "./_components/Input";
-// import Button from "./_components/Button";
+import Button from "./_components/Button";
 
 export default function Login() {
   const [email, setEmail] = useState("");

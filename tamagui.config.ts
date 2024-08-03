@@ -38,39 +38,49 @@ const colorTokens = createTokens({
   zIndex: {},
 });
 
-const fontInter = createFont({
+const interFont = createFont({
   family: "Inter",
   size: {
-    xxs: 11,
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 20,
-    xl: 24,
-    xxl: 32,
+    1: 11,
+    2: 12,
+    3: 14,
+    4: 16,
+    5: 20,
+    6: 24,
+    7: 32,
   },
+  lineHeight: config.fonts.body.lineHeight,
+  weight: config.fonts.body.weight,
+  letterSpacing: config.fonts.body.letterSpacing,
   face: {
-    400: { normal: "Inter_400Regular" },
-    500: { normal: "Inter_500Medium" },
+    normal: { normal: "Inter" },
+    bold: { normal: "InterBold" },
+    400: { normal: "Inter" },
+    500: { normal: "InterMedium" },
   },
 });
 
-const fontDarker = createFont({
-  family: "Darker Grotesque",
+const darkerFont = createFont({
+  family: "DarkerGrotesque",
   size: {
-    xxs: 11,
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 20,
-    xl: 24,
-    xxl: 32,
+    1: 11,
+    2: 12,
+    3: 14,
+    4: 16,
+    5: 20,
+    6: 24,
+    7: 32,
   },
+  lineHeight: config.fonts.heading.lineHeight,
+  weight: config.fonts.heading.weight,
+  letterSpacing: config.fonts.heading.letterSpacing,
   face: {
-    400: { normal: "DarkerGrotesque_400Regular" },
-    500: { normal: "DarkerGrotesque_500Medium" },
-    600: { normal: "DarkerGrotesque_600SemiBold" },
-    700: { normal: "DarkerGrotesque_700Bold" },
+    normal: { normal: "DarkerGrotesque-Regular" },
+    bold: { normal: "DarkerGrotesque-Bold" },
+    400: { normal: "DarkerGrotesque-Regular" },
+    500: { normal: "DarkerGrotesque-Medium" },
+    600: { normal: "DarkerGrotesque-SemiBold" },
+    700: { normal: "DarkerGrotesque-Bold" },
   },
 });
 
@@ -83,11 +93,9 @@ const customTamaguiConfig = {
     radius: config.tokens.radius,
     zIndex: config.tokens.zIndex,
   },
-  ...fontInter,
-  ...fontDarker,
   fonts: {
-    heading: fontDarker,
-    darker: fontDarker,
+    body: interFont,
+    heading: darkerFont,
   },
 };
 

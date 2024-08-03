@@ -4,15 +4,15 @@ import { tamaguiConfig } from "../tamagui.config";
 import { SplashScreen, Stack } from "expo-router";
 import {
   useFonts,
-  Inter_500Medium,
-  Inter_400Regular,
+  // Inter_500Medium,
+  // Inter_400Regular,
 } from "@expo-google-fonts/inter";
-import {
-  DarkerGrotesque_400Regular,
-  DarkerGrotesque_500Medium,
-  DarkerGrotesque_600SemiBold,
-  DarkerGrotesque_700Bold,
-} from "@expo-google-fonts/darker-grotesque";
+// import {
+//   DarkerGrotesque_400Regular,
+//   DarkerGrotesque_500Medium,
+//   DarkerGrotesque_600SemiBold,
+//   DarkerGrotesque_700Bold,
+// } from "@expo-google-fonts/darker-grotesque";
 import { useEffect } from "react";
 import { AuthContextProvider, useAuth } from "../auth/context";
 import { AppState } from "react-native";
@@ -22,12 +22,13 @@ SplashScreen.preventAutoHideAsync();
 
 export default function AppLayout() {
   const [fontsLoaded, fontError] = useFonts({
-    InterMedium: Inter_500Medium,
-    Inter: Inter_400Regular,
-    DarkerGrotesque_400Regular,
-    DarkerGrotesque_500Medium,
-    DarkerGrotesque_600SemiBold,
-    DarkerGrotesque_700Bold,
+    Inter: require("@tamagui/font-inter/otf/Inter-Regular.otf"),
+    InterMedium: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
+    InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
+    "DarkerGrotesque-Regular": require("../assets/fonts/DarkerGrotesque-Regular.ttf"),
+    "DarkerGrotesque-Medium": require("../assets/fonts/DarkerGrotesque-Medium.ttf"),
+    "DarkerGrotesque-SemiBold": require("../assets/fonts/DarkerGrotesque-SemiBold.ttf"),
+    "DarkerGrotesque-Bold": require("../assets/fonts/DarkerGrotesque-Bold.ttf"),
   });
 
   const { isLoggedIn } = useAuth();

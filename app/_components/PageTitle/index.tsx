@@ -7,8 +7,10 @@ type PageTitleProps = {
 
 export default function PageTitle({ title, subtitle }: PageTitleProps) {
   return (
-    <Stack gap={8}>
-      <H1>{title}</H1>
+    <Stack>
+      <H1 fontSize={"$6"} fontFamily={"$heading"} margin={0}>
+        {title}
+      </H1>
       <Text fontFamily={"$darker"}>{subtitle}</Text>
     </Stack>
   );
