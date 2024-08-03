@@ -1,11 +1,15 @@
-import { Button, Form, Input, Text, TextArea, View } from "tamagui";
+import { Button, Form, Text, View } from "tamagui";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import { router } from "expo-router";
 import { createCollection } from "../../../../database/controllers/collection/createCollection";
 import { Collection } from "../../../../types";
+import BackButton from "../../../_components/BackButton";
+import BackgroundGradient from "../../../_components/BackgroundGradient";
 
+import Input from "../../../_components/Input";
+import TextArea from "../../../_components/TextArea";
 type InputTypes = Pick<Collection, "name" | "description">;
 
 export default function CreateCollection() {
@@ -23,40 +27,49 @@ export default function CreateCollection() {
   };
 
   return (
-    <View>
-      <Text>Criar coleção</Text>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="name"
-          control={control}
-          defaultValue=""
-          rules={{ required: true }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              onChangeText={onChange}
-              onBlur={onBlur}
-              value={value}
-              placeholder="Nome da coleção"
-            />
-          )}
+    <>
+      <BackgroundGradient />
+      <View>
+        <BackButton
+          size="$1"
+          alignSelf="flex-start"
+          paddingTop={32}
+          paddingLeft={32}
         />
-        <Controller
-          name="description"
-          control={control}
-          defaultValue=""
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextArea
-              placeholder="Descrição da coleção"
-              onChangeText={onChange}
-              onBlur={onBlur}
-              value={value ?? ""}
-            />
-          )}
-        />
-        <Form.Trigger asChild>
-          <Button>Criar coleção</Button>
-        </Form.Trigger>
-      </Form>
-    </View>
+        <Text>Criar coleção</Text>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Controller
+            name="name"
+            control={control}
+            defaultValue=""
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                onChangeText={onChange}
+                onBlur={onBlur}
+                value={value}
+                placeholder="Nome da coleção"
+              />
+            )}
+          />
+          <Controller
+            name="description"
+            control={control}
+            defaultValue=""
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextArea
+                placeholder="Descrição da coleção"
+                onChangeText={onChange}
+                onBlur={onBlur}
+                value={value ?? ""}
+              />
+            )}
+          />
+          <Form.Trigger asChild>
+            <Button>Criar coleção</Button>
+          </Form.Trigger>
+        </Form>
+      </View>
+    </>
   );
 }

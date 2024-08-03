@@ -24,12 +24,6 @@ export default function AllCollections() {
   return (
     <>
       <BackgroundGradient />
-      <BackButton
-        size="$1"
-        alignSelf="flex-start"
-        paddingTop={32}
-        paddingLeft={32}
-      />
       <View flex={1} alignItems="flex-start" justifyContent="center">
         <Stack width="100%" alignItems="center" justifyContent="center">
           {collections ? (
