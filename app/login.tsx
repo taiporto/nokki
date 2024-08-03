@@ -73,7 +73,7 @@ export default function Login() {
                 onChangeText={(text: string) => setPassword(text)}
                 secureTextEntry
               />
-              <Form.Trigger disabled={status !== "off"} asChild>
+              <Form.Trigger asChild>
                 <Button
                   icon={status === "submitting" ? <Spinner /> : undefined}
                 >
