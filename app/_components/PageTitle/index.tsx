@@ -9,7 +9,7 @@ export default function PageTitle({ title, subtitle }: PageTitleProps) {
   return (
     <Stack>
       <H1
-        fontSize={"$7"}
+        fontSize="$7"
         fontFamily={"$heading"}
         margin={0}
         fontWeight={"700"}

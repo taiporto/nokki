@@ -1,4 +1,4 @@
-import { ButtonProps, H1, H2, Image, Stack, Text, View } from "tamagui";
+import { ButtonProps, H1, H2, Image, Stack } from "tamagui";
 import Button from "../Button";
 import { Link } from "expo-router";
 

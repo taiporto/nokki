@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { AuthContextProvider, useAuth } from "../auth/context";
 import { AppState } from "react-native";
 import supabase from "../lib/supabase";
+import { PortalProvider } from "tamagui";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -48,28 +49,30 @@ export default function AppLayout() {
   // Render the children routes now that all the assets are loaded.
   return (
     <TamaguiProvider config={tamaguiConfig}>
-      <RootSiblingParent>
-        <AuthContextProvider>
-          {isLoggedIn ? (
-            <Stack
-              screenOptions={{
-                headerShown: false,
-              }}
-            >
-              <Stack.Screen name="(app)" />
-            </Stack>
-          ) : (
-            <Stack
-              screenOptions={{
-                headerShown: false,
-              }}
-            >
-              <Stack.Screen name="login" />
-              <Stack.Screen name="signup" />
-            </Stack>
-          )}
-        </AuthContextProvider>
-      </RootSiblingParent>
+      <PortalProvider>
+        <RootSiblingParent>
+          <AuthContextProvider>
+            {isLoggedIn ? (
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                }}
+              >
+                <Stack.Screen name="(app)" />
+              </Stack>
+            ) : (
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                }}
+              >
+                <Stack.Screen name="login" />
+                <Stack.Screen name="signup" />
+              </Stack>
+            )}
+          </AuthContextProvider>
+        </RootSiblingParent>
+      </PortalProvider>
     </TamaguiProvider>
   );
 }

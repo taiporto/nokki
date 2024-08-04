@@ -1,7 +1,5 @@
-import { View, Text, Button, Stack } from "tamagui";
+import { View, Text, Stack } from "tamagui";
 import { Plus } from "@tamagui/lucide-icons";
-import { Link } from "expo-router";
-import BackButton from "../../../_components/BackButton";
 import { getAllCollections } from "../../../../database/controllers/collection/getCollections";
 import { useEffect, useState } from "react";
 import { Collection } from "../../../../types";
@@ -13,7 +11,6 @@ export default function AllCollections() {
 
   useEffect(() => {
     getAllCollections().then((collections) => {
-      console.log(collections);
       if (!collections) {
         return;
       }
