@@ -1,4 +1,4 @@
-import { Dialog, H2, Button, ScrollView, View, XStack, Stack } from "tamagui";
+import { Dialog, H2, Button, ScrollView, XStack, Stack } from "tamagui";
 import { X } from "@tamagui/lucide-icons";
 import { collectionIcons } from "../../../assets/collection_icons";
 import { CollectionIcon } from "../CollectionIcon";
