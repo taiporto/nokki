@@ -1,9 +1,10 @@
-import { Collection } from "../../../types";
+import { Collection, TableNames } from "../../../types";
 import { db } from "../..";
 
 export async function getAllCollections(): Promise<Collection[]> {
   try {
-    return (await db.from("collections_table").select()).data as Collection[];
+    return (await db.from(TableNames.COLLECTIONS).select())
+      .data as Collection[];
   } catch (error) {
     console.error(error);
     return [];
@@ -15,7 +16,7 @@ export async function getCollectionById(
 ): Promise<Collection | null> {
   try {
     const { data, error } = await db
-      .from("collections_table")
+      .from(TableNames.COLLECTIONS)
       .select()
       .eq("id", collectionId);
 

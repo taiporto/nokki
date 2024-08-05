@@ -1,6 +1,6 @@
 import "react-native-get-random-values";
 
-import { InsertCollection } from "../../../types";
+import { InsertCollection, TableNames } from "../../../types";
 import { db } from "../..";
 
 export const createCollection = async (
@@ -8,7 +8,7 @@ export const createCollection = async (
 ): Promise<{ insertedId: number } | null> => {
   try {
     const { data, error } = await db
-      .from("collections_table")
+      .from(TableNames.COLLECTIONS)
       .insert(collectionData)
       .select();
 

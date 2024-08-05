@@ -37,7 +37,7 @@ export const EmptyState = ({
         <Image
           maxWidth={240}
           maxHeight={155}
-          resizeMode="contain"
+          objectFit="contain"
           source={require("../../../assets/empty_state.png")}
         />
         {!!bottomText && <H2 fontSize="$5">{bottomText}</H2>}

@@ -31,6 +31,7 @@ const colorTokens = createTokens({
     neutral800: "#2C2A2E",
     neutral900: "#222123",
     neutral1000: "#171718",
+    offwhite: "#F7F7F7",
   },
   size: {},
   space: {},

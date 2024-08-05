@@ -7,3 +7,8 @@ export type InsertCollection = TablesInsert<"collections">;
 export type Card = Tables<"cards">;
 
 export type InsertCard = TablesInsert<"cards">;
+
+export enum TableNames {
+  COLLECTIONS = "collections",
+  CARDS = "cards",
+}

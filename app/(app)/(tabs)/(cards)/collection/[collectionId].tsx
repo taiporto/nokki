@@ -9,7 +9,7 @@ export default function CollectionPage() {
   const { collectionId } = useLocalSearchParams();
 
   useEffect(() => {
-    getCollectionById(+collectionId!).then((collection) => {
+    getCollectionById(+collectionId).then((collection) => {
       if (!collection) {
         console.error("Collection not found");
         return;

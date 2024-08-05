@@ -3,17 +3,29 @@ import { H1, Stack, Text } from "tamagui";
 type PageTitleProps = {
   title: string;
   subtitle?: string;
+  size?: "small" | "medium";
 };
 
-export default function PageTitle({ title, subtitle }: PageTitleProps) {
+const sizes = {
+  small: {
+    titleSize: "$6",
+  },
+  medium: {
+    titleSize: "$7",
+  },
+};
+
+export default function PageTitle({
+  title,
+  subtitle,
+  size = "medium",
+}: PageTitleProps) {
   return (
     <Stack>
       <H1
-        fontSize="$7"
+        fontSize={sizes[size]["titleSize"]}
         fontFamily={"$heading"}
-        margin={0}
         fontWeight={"700"}
-        letterSpacing={0}
       >
         {title}
       </H1>
