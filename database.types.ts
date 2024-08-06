@@ -11,102 +11,105 @@ export type Database = {
     Tables: {
       cards: {
         Row: {
-          collection_id: number | null
-          content: string | null
-          created_at: string
-          id: number
-          is_favorite: boolean
-          title: string
-          user_uuid: string | null
-          uuid: string | null
-        }
+          collection_id: number | null;
+          content: string | null;
+          created_at: string;
+          id: number;
+          is_favorite: boolean;
+          title: string;
+          user_uuid: string | null;
+          uuid: string | null;
+        };
         Insert: {
-          collection_id?: number | null
-          content?: string | null
-          created_at?: string
-          id?: number
-          is_favorite?: boolean
-          title: string
-          user_uuid?: string | null
-          uuid?: string | null
-        }
+          collection_id?: number | null;
+          content?: string | null;
+          created_at?: string;
+          id?: number;
+          is_favorite?: boolean;
+          title: string;
+          user_uuid?: string | null;
+          uuid?: string | null;
+        };
         Update: {
-          collection_id?: number | null
-          content?: string | null
-          created_at?: string
-          id?: number
-          is_favorite?: boolean
-          title?: string
-          user_uuid?: string | null
-          uuid?: string | null
-        }
+          collection_id?: number | null;
+          content?: string | null;
+          created_at?: string;
+          id?: number;
+          is_favorite?: boolean;
+          title?: string;
+          user_uuid?: string | null;
+          uuid?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "cards_collection_id_fkey"
-            columns: ["collection_id"]
-            isOneToOne: false
-            referencedRelation: "collections"
-            referencedColumns: ["id"]
+            foreignKeyName: "cards_collection_id_fkey";
+            columns: ["collection_id"];
+            isOneToOne: false;
+            referencedRelation: "collections";
+            referencedColumns: ["id"];
           },
           {
-            foreignKeyName: "cards_user_uuid_fkey"
-            columns: ["user_uuid"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
+            foreignKeyName: "cards_user_uuid_fkey";
+            columns: ["user_uuid"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
       collections: {
         Row: {
-          created_at: string
-          description: string | null
-          id: number
-          name: string
-          user_uuid: string | null
-          uuid: string | null
-        }
+          created_at: string;
+          description: string | null;
+          icon: string;
+          id: number;
+          name: string;
+          user_uuid: string | null;
+          uuid: string | null;
+        };
         Insert: {
-          created_at?: string
-          description?: string | null
-          id?: number
-          name: string
-          user_uuid?: string | null
-          uuid?: string | null
-        }
+          created_at?: string;
+          description?: string | null;
+          icon: string;
+          id?: number;
+          name: string;
+          user_uuid?: string | null;
+          uuid?: string | null;
+        };
         Update: {
-          created_at?: string
-          description?: string | null
-          id?: number
-          name?: string
-          user_uuid?: string | null
-          uuid?: string | null
-        }
+          created_at?: string;
+          description?: string | null;
+          icon?: string;
+          id?: number;
+          name?: string;
+          user_uuid?: string | null;
+          uuid?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "collections_user_uuid_fkey"
-            columns: ["user_uuid"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-    }
+            foreignKeyName: "collections_user_uuid_fkey";
+            columns: ["user_uuid"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+    };
     Views: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Functions: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Enums: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     CompositeTypes: {
-      [_ in never]: never
-    }
-  }
-}
+      [_ in never]: never;
+    };
+  };
+};
 
 type PublicSchema = Database[Extract<keyof Database, "public">]
 
