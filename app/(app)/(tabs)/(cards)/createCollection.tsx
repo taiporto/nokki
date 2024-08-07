@@ -1,4 +1,4 @@
-import { Form, ScrollView, Stack, View } from "tamagui";
+import { Form, ScrollView, Spinner, Stack, View } from "tamagui";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
@@ -16,11 +16,14 @@ import { IconChooser } from "../../../_components/IconChooser";
 import { useState } from "react";
 import { collectionIcons } from "../../../../assets/collection_icons";
 import { useAuth } from "../../../../auth/context";
-import { KeyboardAvoidingView } from "react-native";
+import { Keyboard, KeyboardAvoidingView } from "react-native";
+import Toast from "react-native-root-toast";
 type InputTypes = Pick<Collection, "name" | "description">;
 
 export default function CreateCollection() {
   const { control, handleSubmit } = useForm<InputTypes>();
+  const [loading, setLoading] = useState(false);
+
   const [icon, setIcon] = useState(
     collectionIcons[
       `Illustration-${Math.floor(
@@ -33,13 +36,17 @@ export default function CreateCollection() {
 
   const onSubmit: SubmitHandler<InputTypes> = async (data: InputTypes) => {
     console.log("Entered onSubmit");
+    setLoading(true);
     const finalData = { ...data, icon: icon.url, user_uuid: user?.id };
     const result = await createCollection(finalData);
     if (!result) {
       console.error("Failed to create collection");
+      Toast.show("Erro ao criar coleção");
+      setLoading(false);
       return;
     }
 
+    setLoading(false);
     router.replace(`(tabs)/(cards)/collection/${result.insertedId}`);
   };
 
@@ -47,7 +54,7 @@ export default function CreateCollection() {
     <>
       <BackgroundGradient />
       <ScrollView automaticallyAdjustKeyboardInsets>
-        <View padding={16}>
+        <View padding={16} onPress={() => Keyboard.dismiss()}>
           <BackButton size="$1" alignSelf="flex-start" />
           <Stack paddingHorizontal={20} gap={42}>
             <PageTitle
@@ -86,7 +93,9 @@ export default function CreateCollection() {
                   )}
                 />
                 <Form.Trigger marginTop={16} asChild>
-                  <Button>Criar coleção</Button>
+                  <Button icon={loading ? <Spinner /> : undefined}>
+                    Criar coleção
+                  </Button>
                 </Form.Trigger>
               </Form>
             </KeyboardAvoidingView>

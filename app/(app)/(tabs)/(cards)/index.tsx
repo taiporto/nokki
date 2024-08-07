@@ -17,7 +17,7 @@ import { CollectionCard } from "../../../_components/CollectionCard";
 import Button from "../../../_components/Button";
 import { router } from "expo-router";
 import { collectionIcons } from "../../../../assets/collection_icons";
-import { FlatList } from "react-native";
+import { FlatList, Keyboard } from "react-native";
 
 export default function AllCollections() {
   const [collections, setCollections] = useState<Collection[] | null>(null);
@@ -50,7 +50,7 @@ export default function AllCollections() {
   return (
     <>
       <BackgroundGradient />
-      <View height="100%" width="100%">
+      <View height="100%" width="100%" onPress={Keyboard.dismiss}>
         <View
           paddingVertical={24}
           paddingHorizontal={32}

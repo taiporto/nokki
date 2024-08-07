@@ -9,7 +9,6 @@ export default function CardView() {
     >
       <Stack.Screen name="index" />
       <Stack.Screen name="createCollection" />
-      <Stack.Screen name="singleCard" />
     </Stack>
   );
 }

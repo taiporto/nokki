@@ -1,11 +1,7 @@
 import React from "react";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Redirect, Tabs } from "expo-router";
 import { useAuth } from "../../../auth/context";
-import BackgroundGradient from "../../_components/BackgroundGradient";
-import { Stack, View } from "tamagui";
-import { useTheme } from "tamagui";
+import { Stack, View, useTheme } from "tamagui";
 import { User2, WalletCards } from "@tamagui/lucide-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 
