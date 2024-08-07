@@ -10,6 +10,7 @@ import Input from "./_components/Input";
 import Button from "./_components/Button";
 import Link from "./_components/Link";
 import { PasswordInput } from "./_components/PasswordInput";
+import { KeyboardAvoidingView } from "react-native";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -48,43 +49,45 @@ export default function Login() {
     <>
       <BackgroundGradient />
       <SafeAreaView>
-        <Stack
-          alignItems="center"
-          justifyContent="center"
-          paddingTop={110}
-          gap={110}
-        >
-          <Image height={50} resizeMode="contain" source={Logo} />
+        <KeyboardAvoidingView>
           <Stack
-            gap={48}
             alignItems="center"
             justifyContent="center"
-            maxWidth={288}
-            width="70%"
+            paddingTop={110}
+            gap={110}
           >
-            <Form onSubmit={onSubmit} width="100%" gap={24}>
-              <Input
-                value={email}
-                placeholder="E-mail"
-                keyboardType="email-address"
-                onChangeText={(text: string) => setEmail(text)}
-              />
-              <PasswordInput
-                value={password}
-                placeholder="Senha"
-                onChangeText={(text: string) => setPassword(text)}
-              />
-              <Form.Trigger asChild>
-                <Button
-                  icon={status === "submitting" ? <Spinner /> : undefined}
-                >
-                  Entrar
-                </Button>
-              </Form.Trigger>
-            </Form>
-            <Link href="/signup">Não tenho cadastro</Link>
+            <Image height={50} objectFit="contain" source={Logo} />
+            <Stack
+              gap={48}
+              alignItems="center"
+              justifyContent="center"
+              maxWidth={288}
+              width="70%"
+            >
+              <Form onSubmit={onSubmit} width="100%" gap={24}>
+                <Input
+                  value={email}
+                  placeholder="E-mail"
+                  keyboardType="email-address"
+                  onChangeText={(text: string) => setEmail(text)}
+                />
+                <PasswordInput
+                  value={password}
+                  placeholder="Senha"
+                  onChangeText={(text: string) => setPassword(text)}
+                />
+                <Form.Trigger asChild>
+                  <Button
+                    icon={status === "submitting" ? <Spinner /> : undefined}
+                  >
+                    Entrar
+                  </Button>
+                </Form.Trigger>
+              </Form>
+              <Link href="/signup">Não tenho cadastro</Link>
+            </Stack>
           </Stack>
-        </Stack>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </>
   );

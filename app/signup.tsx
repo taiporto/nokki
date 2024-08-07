@@ -12,6 +12,7 @@ import Input from "./_components/Input";
 import BackButton from "./_components/BackButton";
 import Button from "./_components/Button";
 import { PasswordInput } from "./_components/PasswordInput";
+import { KeyboardAvoidingView } from "react-native";
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -66,45 +67,47 @@ export default function Signup() {
     <View height="100%">
       <BackgroundGradient />
       <SafeAreaView>
-        <Stack padding={16}>
-          <BackButton marginTop={18} alignSelf="flex-start" size="$2" />
-          <Stack paddingHorizontal={28} gap={40}>
-            <PageTitle
-              title="Crie sua conta"
-              subtitle="Seus cartões e coleções estarão associados à sua conta."
-            />
-            <Form onSubmit={onSubmit} gap={32} width="100%">
-              <Input
-                placeholder="Nome"
-                value={firstName}
-                onChangeText={(text: string) => setFirstName(text)}
+        <KeyboardAvoidingView>
+          <Stack padding={16}>
+            <BackButton marginTop={18} alignSelf="flex-start" size="$2" />
+            <Stack paddingHorizontal={28} gap={40}>
+              <PageTitle
+                title="Crie sua conta"
+                subtitle="Seus cartões e coleções estarão associados à sua conta."
               />
-              <Input
-                placeholder="E-mail"
-                value={email}
-                keyboardType="email-address"
-                onChangeText={(text: string) => setEmail(text)}
-              />
-              <PasswordInput
-                placeholder="Crie uma senha"
-                value={password}
-                onChangeText={(text: string) => setPassword(text)}
-              />
-              <PasswordInput
-                placeholder="Confirme a senha"
-                value={confirmPassword}
-                onChangeText={(text: string) => setConfirmPassword(text)}
-              />
-              <Form.Trigger disabled={status !== "off"} asChild>
-                <Button
-                  icon={status === "submitting" ? <Spinner /> : undefined}
-                >
-                  Cadastrar
-                </Button>
-              </Form.Trigger>
-            </Form>
+              <Form onSubmit={onSubmit} gap={32} width="100%">
+                <Input
+                  placeholder="Nome"
+                  value={firstName}
+                  onChangeText={(text: string) => setFirstName(text)}
+                />
+                <Input
+                  placeholder="E-mail"
+                  value={email}
+                  keyboardType="email-address"
+                  onChangeText={(text: string) => setEmail(text)}
+                />
+                <PasswordInput
+                  placeholder="Crie uma senha"
+                  value={password}
+                  onChangeText={(text: string) => setPassword(text)}
+                />
+                <PasswordInput
+                  placeholder="Confirme a senha"
+                  value={confirmPassword}
+                  onChangeText={(text: string) => setConfirmPassword(text)}
+                />
+                <Form.Trigger disabled={status !== "off"} asChild>
+                  <Button
+                    icon={status === "submitting" ? <Spinner /> : undefined}
+                  >
+                    Cadastrar
+                  </Button>
+                </Form.Trigger>
+              </Form>
+            </Stack>
           </Stack>
-        </Stack>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </View>
   );
