@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Image, Spinner, Stack } from "tamagui";
+import { Form, Image, ScrollView, Spinner, Stack } from "tamagui";
 import supabase from "../lib/supabase";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,7 +10,6 @@ import Input from "./_components/Input";
 import Button from "./_components/Button";
 import Link from "./_components/Link";
 import { PasswordInput } from "./_components/PasswordInput";
-import { KeyboardAvoidingView } from "react-native";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -49,7 +48,7 @@ export default function Login() {
     <>
       <BackgroundGradient />
       <SafeAreaView>
-        <KeyboardAvoidingView>
+        <ScrollView automaticallyAdjustKeyboardInsets>
           <Stack
             alignItems="center"
             justifyContent="center"
@@ -87,7 +86,7 @@ export default function Login() {
               <Link href="/signup">Não tenho cadastro</Link>
             </Stack>
           </Stack>
-        </KeyboardAvoidingView>
+        </ScrollView>
       </SafeAreaView>
     </>
   );

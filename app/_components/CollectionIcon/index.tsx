@@ -30,13 +30,14 @@ export const CollectionIcon = ({
   return (
     <Pressable disabled={onPress === undefined}>
       <Circle
-        borderWidth={0.5}
-        borderColor="$neutral700"
+        borderWidth={0.8}
+        borderColor="$neutral500"
         backgroundColor="$offwhite"
         padding={sizes[size]["padding"]}
         width={sizes[size]["size"]}
         height={sizes[size]["size"]}
         onPress={onPress}
+        pressStyle={{ opacity: 0.6 }}
       >
         <Image
           source={imageUrl}

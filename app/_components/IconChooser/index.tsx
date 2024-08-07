@@ -25,9 +25,10 @@ export const IconChooser = ({ icon, setIcon }: IconChooserProps) => {
         <H2 fontSize="$5" textAlign="center" lineHeight="$5">
           Escolha um ícone para a sua coleção
         </H2>
-        <Dialog.Trigger onPress={() => setIsModalOpen(true)}>
-          <CollectionIcon imageUrl={icon.url} />
-        </Dialog.Trigger>
+        <CollectionIcon
+          imageUrl={icon.url}
+          onPress={() => setIsModalOpen(true)}
+        />
       </Stack>
       <Dialog.Portal>
         <Dialog.Overlay

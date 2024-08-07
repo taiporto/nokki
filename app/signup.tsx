@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Spinner, Stack, View } from "tamagui";
+import { Form, ScrollView, Spinner, Stack, View } from "tamagui";
 import supabase from "../lib/supabase";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
@@ -67,7 +67,7 @@ export default function Signup() {
     <View height="100%">
       <BackgroundGradient />
       <SafeAreaView>
-        <KeyboardAvoidingView>
+        <ScrollView automaticallyAdjustKeyboardInsets>
           <Stack padding={16}>
             <BackButton marginTop={18} alignSelf="flex-start" size="$2" />
             <Stack paddingHorizontal={28} gap={40}>
@@ -107,7 +107,7 @@ export default function Signup() {
               </Form>
             </Stack>
           </Stack>
-        </KeyboardAvoidingView>
+        </ScrollView>
       </SafeAreaView>
     </View>
   );
