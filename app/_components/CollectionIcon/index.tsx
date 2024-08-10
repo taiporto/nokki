@@ -18,6 +18,7 @@ type CollectionIconProps = {
   imagePlaceholder?: string;
   size?: "small" | "medium";
   onPress?: () => void;
+  border?: boolean;
 } & ImageProps;
 
 export const CollectionIcon = ({
@@ -25,12 +26,13 @@ export const CollectionIcon = ({
   imagePlaceholder,
   size = "medium",
   onPress,
+  border,
   ...imageProps
 }: CollectionIconProps) => {
   return (
     <Pressable disabled={onPress === undefined}>
       <Circle
-        borderWidth={0.8}
+        borderWidth={border ? 0.8 : 0}
         borderColor="$neutral500"
         backgroundColor="$offwhite"
         padding={sizes[size]["padding"]}
