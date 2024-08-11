@@ -39,7 +39,7 @@ export const CollectionIcon = ({
         width={sizes[size]["size"]}
         height={sizes[size]["size"]}
         onPress={onPress}
-        pressStyle={{ opacity: 0.6 }}
+        pressStyle={{ opacity: onPress ? 0.6 : 1 }}
       >
         <Image
           source={imageUrl}
