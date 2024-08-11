@@ -1,10 +1,10 @@
-import { Collection, TableNames } from "../../../types";
+import { TCollection, TableNames } from "../../../types";
 import { db } from "../..";
 
-export async function getAllCollections(): Promise<Collection[]> {
+export async function getAllCollections(): Promise<TCollection[]> {
   try {
     return (await db.from(TableNames.COLLECTIONS).select())
-      .data as Collection[];
+      .data as TCollection[];
   } catch (error) {
     console.error(error);
     return [];
@@ -13,7 +13,7 @@ export async function getAllCollections(): Promise<Collection[]> {
 
 export async function getCollectionById(
   collectionId: number
-): Promise<Collection | null> {
+): Promise<TCollection | null> {
   try {
     const { data, error } = await db
       .from(TableNames.COLLECTIONS)

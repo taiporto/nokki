@@ -10,7 +10,7 @@ import {
 import { Plus } from "@tamagui/lucide-icons";
 import { getAllCollections } from "../../../../database/controllers/collection/getCollections";
 import { useEffect, useState } from "react";
-import { Collection } from "../../../../types";
+import { TCollection } from "../../../../types";
 import { EmptyState } from "../../../_components/EmptyState";
 import BackgroundGradient from "../../../_components/BackgroundGradient";
 import { CollectionCard } from "../../../_components/CollectionCard";
@@ -20,7 +20,7 @@ import { collectionIcons } from "../../../../assets/collection_icons";
 import { FlatList, Keyboard } from "react-native";
 
 export default function AllCollections() {
-  const [collections, setCollections] = useState<Collection[] | null>(null);
+  const [collections, setCollections] = useState<TCollection[] | null>(null);
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
@@ -72,32 +72,31 @@ export default function AllCollections() {
             width={"100%"}
           />
           <Stack width="100%" alignItems="center" justifyContent="center">
-            {collections ? (
-              <FlatList
-                style={{ width: "100%", gap: 16 }}
-                horizontal={false}
-                numColumns={2}
-                columnWrapperStyle={{ justifyContent: "space-between" }}
-                data={collections}
-                renderItem={({ item }) => <CollectionCard collection={item} />}
-                keyExtractor={(item) => item.id.toString()}
-                refreshing={refreshing}
-                onRefresh={() => setRefreshing(true)}
-                ItemSeparatorComponent={() => <View height={12} />}
-              />
-            ) : (
-              <View marginVertical="auto">
-                <EmptyState
-                  topText="Não tem nenhuma coleção aqui..."
-                  bottomText="Que tal criar uma?"
-                  button={{
-                    text: "Criar coleção",
-                    href: "/createCollection",
-                    icon: Plus,
-                  }}
-                />
-              </View>
-            )}
+            <FlatList
+              style={{ width: "100%", gap: 16 }}
+              horizontal={false}
+              numColumns={2}
+              columnWrapperStyle={{ justifyContent: "space-between" }}
+              data={collections}
+              renderItem={({ item }) => <CollectionCard collection={item} />}
+              keyExtractor={(item) => item.id.toString()}
+              refreshing={refreshing}
+              onRefresh={() => setRefreshing(true)}
+              ItemSeparatorComponent={() => <View height={12} />}
+              ListEmptyComponent={
+                <View marginVertical="auto">
+                  <EmptyState
+                    topText="Não tem nenhuma coleção aqui..."
+                    bottomText="Que tal criar uma?"
+                    button={{
+                      text: "Criar coleção",
+                      href: "/createCollection",
+                      icon: Plus,
+                    }}
+                  />
+                </View>
+              }
+            />
           </Stack>
         </View>
         <View position="absolute" right={16} bottom={32}>

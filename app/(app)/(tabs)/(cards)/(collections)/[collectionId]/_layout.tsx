@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 
-export default function CardsGroup() {
+export default function CollectionsGroup() {
   return (
     <Stack
       screenOptions={{
@@ -8,8 +8,7 @@ export default function CardsGroup() {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="createCollection" />
-      <Stack.Screen name="createCard" />
+      <Stack.Screen name="edit" />
     </Stack>
   );
 }

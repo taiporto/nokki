@@ -12,7 +12,6 @@ import Input from "./_components/Input";
 import BackButton from "./_components/BackButton";
 import Button from "./_components/Button";
 import { PasswordInput } from "./_components/PasswordInput";
-import { KeyboardAvoidingView } from "react-native";
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");

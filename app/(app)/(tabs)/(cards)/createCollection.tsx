@@ -4,7 +4,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import { router } from "expo-router";
 import { createCollection } from "../../../../database/controllers/collection/createCollection";
-import { Collection } from "../../../../types";
+import { TCollection } from "../../../../types";
 import BackButton from "../../../_components/BackButton";
 import BackgroundGradient from "../../../_components/BackgroundGradient";
 
@@ -18,7 +18,7 @@ import { collectionIcons } from "../../../../assets/collection_icons";
 import { useAuth } from "../../../../auth/context";
 import { Keyboard, KeyboardAvoidingView } from "react-native";
 import Toast from "react-native-root-toast";
-type InputTypes = Pick<Collection, "name" | "description">;
+type InputTypes = Pick<TCollection, "name" | "description">;
 
 export default function CreateCollection() {
   const { control, handleSubmit } = useForm<InputTypes>();
@@ -47,7 +47,7 @@ export default function CreateCollection() {
     }
 
     setLoading(false);
-    router.replace(`(tabs)/(cards)/collection/${result.insertedId}`);
+    router.replace(`(tabs)/(cards)/(collections)/${result.insertedId}`);
   };
 
   return (

@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import { Card, CardProps, H2 } from "tamagui";
-import { Collection } from "../../../types";
+import { TCollection } from "../../../types";
 import { Image } from "expo-image";
 import { collectionIcons } from "../../../assets/collection_icons";
 
@@ -8,7 +8,7 @@ export const CollectionCard = ({
   collection,
   ...cardProps
 }: {
-  collection: Pick<Collection, "id" | "name" | "icon">;
+  collection: Pick<TCollection, "id" | "name" | "icon">;
 } & CardProps) => {
   return (
     <Card
@@ -17,7 +17,7 @@ export const CollectionCard = ({
       padding={16}
       paddingTop={12}
       borderRadius={8}
-      onPress={() => router.push(`collection/${collection.id}`)}
+      onPress={() => router.push(`(collections)/${collection.id}`)}
       gap={2}
       justifyContent="center"
       alignItems="center"
