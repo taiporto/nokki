@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Tabs } from "expo-router";
+import { Redirect, router, Tabs } from "expo-router";
 import { useAuth } from "../../../auth/context";
 import { Stack, View, useTheme } from "tamagui";
 import { User2, WalletCards } from "@tamagui/lucide-icons";
@@ -11,8 +11,9 @@ export default function TabLayout() {
   const theme = useTheme();
 
   if (!isLoggedIn) {
-    return <Redirect href="/login" />;
+    <Redirect href="../../login" />;
   }
+
   return (
     <View height="100%">
       <SafeAreaView>
