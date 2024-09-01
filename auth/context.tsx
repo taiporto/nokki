@@ -17,7 +17,7 @@ export const AuthContext = createContext<{
 export const AuthContextProvider = (props: any) => {
   const [userSession, setUserSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {

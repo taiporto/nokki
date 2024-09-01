@@ -3,7 +3,6 @@ import {
   Card as TamaguiCard,
   CardProps as TamaguiCardProps,
   H2,
-  XStack,
   Text,
   YStack,
 } from "tamagui";
@@ -26,7 +25,14 @@ export const Card = ({
       padding={12}
       paddingTop={16}
       borderRadius={8}
-      onPress={() => router.push(`card/${card.id}`)}
+      onPress={() =>
+        router.push({
+          pathname: `card/${card.id}`,
+          params: {
+            collectionIcon,
+          },
+        })
+      }
       gap={12}
       flexDirection="row"
       alignItems="center"

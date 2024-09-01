@@ -23,8 +23,6 @@ export default function AppLayout() {
     "DarkerGrotesque-Bold": require("../assets/fonts/DarkerGrotesque-Bold.ttf"),
   });
 
-  const { isLoggedIn } = useAuth();
-
   useEffect(() => {
     if (fontsLoaded || fontError) {
       // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
@@ -52,24 +50,16 @@ export default function AppLayout() {
       <PortalProvider>
         <RootSiblingParent>
           <AuthContextProvider>
-            {isLoggedIn ? (
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                }}
-              >
-                <Stack.Screen name="(app)" />
-              </Stack>
-            ) : (
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                }}
-              >
-                <Stack.Screen name="login" />
-                <Stack.Screen name="signup" />
-              </Stack>
-            )}
+            <Stack
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen name="login" />
+              <Stack.Screen name="signup" />
+              <Stack.Screen name="not_found" />
+            </Stack>
           </AuthContextProvider>
         </RootSiblingParent>
       </PortalProvider>

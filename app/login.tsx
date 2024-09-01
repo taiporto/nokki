@@ -10,6 +10,7 @@ import Input from "./_components/Input";
 import Button from "./_components/Button";
 import Link from "./_components/Link";
 import { PasswordInput } from "./_components/PasswordInput";
+import { useAuth } from "../auth/context";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,6 +18,12 @@ export default function Login() {
   const [status, setStatus] = useState<"off" | "submitting" | "submitted">(
     "off"
   );
+
+  const { isLoggedIn } = useAuth();
+
+  if (isLoggedIn) {
+    router.replace("(tabs)");
+  }
 
   const onSubmit = async () => {
     setStatus("submitting");
