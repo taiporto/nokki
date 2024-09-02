@@ -35,7 +35,6 @@ export default function CreateCollection() {
   const { user } = useAuth();
 
   const onSubmit: SubmitHandler<InputTypes> = async (data: InputTypes) => {
-    console.log("Entered onSubmit");
     setLoading(true);
     const finalData = { ...data, icon: icon.url, user_uuid: user?.id };
     const result = await createCollection(finalData);

@@ -59,19 +59,25 @@ export default function CardPage() {
             onPress={toggleFavorite}
           />
         </XStack>
-        <YStack gap={132} alignItems="center" justifyContent="space-between">
+        <YStack gap={100} alignItems="center" justifyContent="space-between">
           <YStack gap={4} alignItems="center" justifyContent="center">
             <CollectionIcon imageUrl={collectionIcon as string} />
-            <YStack gap={24} alignItems="center" justifyContent="center">
+            <YStack gap={32} alignItems="center" justifyContent="center">
               <H1 fontSize="$6" fontWeight={500}>
                 {card?.title}
               </H1>
-              <Text paddingHorizontal={20} fontSize={42} textAlign="center">
+              <Text
+                paddingHorizontal={20}
+                fontSize={52}
+                lineHeight={56}
+                textAlign="center"
+                fontFamily="DarkerGrotesque-Medium"
+              >
                 {card?.content}
               </Text>
             </YStack>
           </YStack>
-          <Button>Editar cartao</Button>
+          <Button>Editar cartão</Button>
         </YStack>
       </View>
     </>

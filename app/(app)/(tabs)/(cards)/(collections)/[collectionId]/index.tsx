@@ -50,7 +50,6 @@ export default function CollectionPage() {
         console.error("Cards not found");
         return;
       }
-      console.log(cards);
       setCollectionCards(cards);
     });
   }, [collection]);

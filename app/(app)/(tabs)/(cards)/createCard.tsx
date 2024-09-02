@@ -46,7 +46,6 @@ export default function CreateCard() {
   const { user } = useAuth();
 
   const onSubmit: SubmitHandler<InputTypes> = async (data: InputTypes) => {
-    console.log("Entered onSubmit");
     setLoading(true);
     const finalData = {
       ...data,

@@ -12,10 +12,7 @@ export const updateCard = async (
       .eq("id", cardId)
       .select();
 
-    console.log(error);
     if (error) throw error;
-
-    console.log(data);
 
     return { updatedId: data[0].id };
   } catch (error) {

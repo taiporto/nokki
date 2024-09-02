@@ -12,10 +12,7 @@ export const createCard = async (
       .insert(cardData)
       .select();
 
-    console.log(error);
     if (error) throw error;
-
-    console.log(data);
 
     return { insertedId: data[0].id };
   } catch (error) {
