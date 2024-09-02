@@ -1,7 +1,13 @@
 import "@tamagui/core/reset.css";
 import { TamaguiProvider } from "@tamagui/core";
 import { tamaguiConfig } from "../tamagui.config";
-import { SplashScreen, Stack } from "expo-router";
+import {
+  router,
+  Slot,
+  SplashScreen,
+  Stack,
+  useRootNavigationState,
+} from "expo-router";
 import { useFonts } from "@expo-google-fonts/inter";
 import { RootSiblingParent } from "react-native-root-siblings";
 import { useEffect } from "react";
@@ -50,16 +56,7 @@ export default function AppLayout() {
       <PortalProvider>
         <RootSiblingParent>
           <AuthContextProvider>
-            <Stack
-              screenOptions={{
-                headerShown: false,
-              }}
-            >
-              <Stack.Screen name="(tabs)" />
-              <Stack.Screen name="login" />
-              <Stack.Screen name="signup" />
-              <Stack.Screen name="not_found" />
-            </Stack>
+            <Slot />
           </AuthContextProvider>
         </RootSiblingParent>
       </PortalProvider>

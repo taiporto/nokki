@@ -8,21 +8,21 @@ import {
   View,
   XStack,
 } from "tamagui";
-import Input from "../../_components/Input";
-import BackgroundGradient from "../../_components/BackgroundGradient";
-import BackButton from "../../_components/BackButton";
-import PageTitle from "../../_components/PageTitle";
+import Input from "../../../_components/Input";
+import BackgroundGradient from "../../../_components/BackgroundGradient";
+import BackButton from "../../../_components/BackButton";
+import PageTitle from "../../../_components/PageTitle";
 import { useEffect, useState } from "react";
-import { getAllCollections } from "../../../database/controllers/collection/getCollections";
-import { TCard, TCollection } from "../../../types";
-import TextArea from "../../_components/TextArea";
-import Button from "../../_components/Button";
-import { Select } from "../../_components/Select";
+import { getAllCollections } from "../../../../database/controllers/collection/getCollections";
+import { TCard, TCollection } from "../../../../types";
+import TextArea from "../../../_components/TextArea";
+import Button from "../../../_components/Button";
+import { Select } from "../../../_components/Select";
 import { Keyboard } from "react-native";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { useAuth } from "../../../auth/context";
+import { useAuth } from "../../../../auth/context";
 import Toast from "react-native-root-toast";
-import { createCard } from "../../../database/controllers/card/createCard";
+import { createCard } from "../../../../database/controllers/card/createCard";
 
 type InputTypes = Pick<TCard, "title" | "content">;
 

@@ -1,22 +1,22 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { getCollectionById } from "../../../../../database/controllers/collection/getCollections";
+import { getCollectionById } from "../../../../../../database/controllers/collection/getCollections";
 import { useEffect, useState } from "react";
-import { TCard, TCollection } from "../../../../../types";
+import { TCard, TCollection } from "../../../../../../types";
 import { Text, View, XStack } from "tamagui";
-import BackgroundGradient from "../../../../_components/BackgroundGradient";
-import PageTitle from "../../../../_components/PageTitle";
-import { CollectionIcon } from "../../../../_components/CollectionIcon";
-import { extractPlaceholderFromIconUrl } from "../../../../../utils/extractPlaceholderFromIconUrl";
-import BackButton from "../../../../_components/BackButton";
-import { EmptyState } from "../../../../_components/EmptyState";
+import BackgroundGradient from "../../../../../_components/BackgroundGradient";
+import PageTitle from "../../../../../_components/PageTitle";
+import { CollectionIcon } from "../../../../../_components/CollectionIcon";
+import { extractPlaceholderFromIconUrl } from "../../../../../../utils/extractPlaceholderFromIconUrl";
+import BackButton from "../../../../../_components/BackButton";
+import { EmptyState } from "../../../../../_components/EmptyState";
 import { Edit3, Plus } from "@tamagui/lucide-icons";
 import {
   getCardsByCollectionId,
   getFavoriteCards,
-} from "../../../../../database/controllers/card/getCards";
-import { Card } from "../../../../_components/Card";
+} from "../../../../../../database/controllers/card/getCards";
+import { Card } from "../../../../../_components/Card";
 import { FlatList } from "react-native";
-import IconButton from "../../../../_components/IconButton";
+import IconButton from "../../../../../_components/IconButton";
 
 export default function CollectionPage() {
   const [collection, setCollection] = useState<TCollection>();

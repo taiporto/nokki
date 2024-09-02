@@ -22,7 +22,7 @@ export default function Login() {
   const { isLoggedIn } = useAuth();
 
   if (isLoggedIn) {
-    router.replace("(tabs)");
+    router.replace("(app)/(tabs)");
   }
 
   const onSubmit = async () => {
@@ -39,7 +39,7 @@ export default function Login() {
     }
 
     setStatus("submitted");
-    router.push("(tabs)");
+    router.push("(app)/(tabs)");
   };
 
   useEffect(() => {

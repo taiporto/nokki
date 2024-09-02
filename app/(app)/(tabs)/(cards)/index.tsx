@@ -8,15 +8,15 @@ import {
   Separator,
 } from "tamagui";
 import { Plus } from "@tamagui/lucide-icons";
-import { getAllCollections } from "../../../database/controllers/collection/getCollections";
+import { getAllCollections } from "../../../../database/controllers/collection/getCollections";
 import { useEffect, useState } from "react";
-import { TCollection } from "../../../types";
-import { EmptyState } from "../../_components/EmptyState";
-import BackgroundGradient from "../../_components/BackgroundGradient";
-import { CollectionCard } from "../../_components/CollectionCard";
-import Button from "../../_components/Button";
+import { TCollection } from "../../../../types";
+import { EmptyState } from "../../../_components/EmptyState";
+import BackgroundGradient from "../../../_components/BackgroundGradient";
+import { CollectionCard } from "../../../_components/CollectionCard";
+import Button from "../../../_components/Button";
 import { router } from "expo-router";
-import { collectionIcons } from "../../../assets/collection_icons";
+import { collectionIcons } from "../../../../assets/collection_icons";
 import { FlatList, Keyboard } from "react-native";
 
 export default function AllCollections() {

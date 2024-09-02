@@ -1,9 +1,9 @@
-import React from "react";
-import { router, Tabs } from "expo-router";
+import React, { useEffect } from "react";
+import { Redirect, router, Tabs, useRootNavigationState } from "expo-router";
 import { Stack, View, useTheme } from "tamagui";
 import { User2, WalletCards } from "@tamagui/lucide-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAuth } from "../../auth/context";
+import { useAuth } from "../../../auth/context";
 
 export default function TabLayout() {
   const theme = useTheme();
@@ -11,7 +11,7 @@ export default function TabLayout() {
   const { isLoggedIn } = useAuth();
 
   if (!isLoggedIn) {
-    router.replace("login");
+    return <Redirect href="/login" />;
   }
 
   return (

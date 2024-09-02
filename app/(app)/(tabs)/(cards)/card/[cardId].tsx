@@ -1,15 +1,15 @@
 import { H1, Text, View, XStack, YStack } from "tamagui";
-import BackgroundGradient from "../../../_components/BackgroundGradient";
+import BackgroundGradient from "../../../../_components/BackgroundGradient";
 import { useGlobalSearchParams, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { TCard } from "../../../../types";
-import { getCardById } from "../../../../database/controllers/card/getCards";
-import BackButton from "../../../_components/BackButton";
-import IconButton from "../../../_components/IconButton";
+import { TCard } from "../../../../../types";
+import { getCardById } from "../../../../../database/controllers/card/getCards";
+import BackButton from "../../../../_components/BackButton";
+import IconButton from "../../../../_components/IconButton";
 import { Star, StarFull, StarOff } from "@tamagui/lucide-icons";
-import { CollectionIcon } from "../../../_components/CollectionIcon";
-import Button from "../../../_components/Button";
-import { updateIsFavorite } from "../../../../database/controllers/card/updateCard";
+import { CollectionIcon } from "../../../../_components/CollectionIcon";
+import Button from "../../../../_components/Button";
+import { updateIsFavorite } from "../../../../../database/controllers/card/updateCard";
 import Toast from "react-native-root-toast";
 
 export default function CardPage() {
