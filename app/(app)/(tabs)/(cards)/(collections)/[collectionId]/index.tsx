@@ -78,9 +78,12 @@ export default function CollectionPage() {
         <IconButton
           iconElement={<Edit3 />}
           onPress={() =>
-            router.push(
-              `(app)/(tabs)/(cards)/(collections)/${collectionId}/edit`
-            )
+            router.navigate({
+              pathname: `(app)/(tabs)/(cards)/(collections)/${collectionId}/edit`,
+              params: {
+                collection: JSON.stringify(collection),
+              },
+            })
           }
         />
       </XStack>
@@ -115,7 +118,7 @@ export default function CollectionPage() {
               button={{
                 text: "Criar cartão",
                 action: () => {
-                  router.push({
+                  router.navigate({
                     pathname: "/(app)/(tabs)/(cards)/createCard",
                     params: {
                       collectionId,

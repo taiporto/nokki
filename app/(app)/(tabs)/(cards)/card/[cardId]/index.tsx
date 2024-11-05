@@ -79,7 +79,7 @@ export default function CardPage() {
           </YStack>
           <Button
             onPress={() =>
-              router.push({
+              router.navigate({
                 pathname: `(app)/(tabs)/(cards)/card/${cardId}/edit`,
                 params: {
                   card: JSON.stringify(card),

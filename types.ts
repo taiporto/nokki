@@ -4,6 +4,8 @@ export type TCollection = Tables<"collections">;
 
 export type InsertCollection = TablesInsert<"collections">;
 
+export type UpdateCollection = TablesUpdate<"collections">;
+
 export type TCard = Tables<"cards">;
 
 export type InsertCard = TablesInsert<"cards">;

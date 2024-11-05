@@ -59,7 +59,7 @@ export default function Signup() {
 
     setStatus("submitted");
 
-    router.push("/login");
+    router.navigate("/login");
   };
 
   return (

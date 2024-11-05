@@ -6,13 +6,11 @@ export const updateCard = async (
   newFieldData: UpdateCard
 ): Promise<boolean> => {
   try {
-    console.log({ cardId, newFieldData });
     const { status, error } = await db
       .from(TableNames.CARDS)
       .update(newFieldData)
       .eq("id", cardId);
 
-    console.log({ error, status });
     if (error) {
       throw error;
     }

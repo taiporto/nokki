@@ -103,7 +103,7 @@ export default function AllCollections() {
           <Button
             icon={<Plus />}
             borderRadius={100}
-            onPress={() => router.push("/createCollection")}
+            onPress={() => router.navigate("/createCollection")}
           >
             Criar coleção
           </Button>

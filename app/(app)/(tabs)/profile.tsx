@@ -11,7 +11,7 @@ export default function Profile() {
       <Button
         onPress={() => {
           supabase.auth.signOut();
-          router.push("login");
+          router.navigate("login");
         }}
       >
         Sair

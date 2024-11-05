@@ -69,74 +69,72 @@ export default function CreateCard() {
     <>
       <BackgroundGradient />
       <ScrollView automaticallyAdjustKeyboardInsets>
-        <BackButton size="$1" alignSelf="flex-start" />
-        <View
-          paddingVertical={16}
-          paddingHorizontal={36}
-          onPress={() => Keyboard.dismiss()}
-        >
-          <PageTitle
-            size="small"
-            title="Crie um novo cartão"
-            subtitle="Todo cartão está associado a uma coleção e também pode ser favoritado."
-          />
-          <Form
-            onSubmit={handleSubmit(onSubmit)}
-            marginTop={32}
-            gap={24}
-            width="100%"
-          >
-            <Controller
-              name="title"
-              control={control}
-              defaultValue=""
-              rules={{ required: true }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  value={value}
-                  placeholder="Título do cartão"
-                />
-              )}
+        <View padding={16} onPress={() => Keyboard.dismiss()}>
+          <BackButton size="$1" alignSelf="flex-start" />
+          <View paddingHorizontal={36}>
+            <PageTitle
+              size="small"
+              title="Crie um novo cartão"
+              subtitle="Todo cartão está associado a uma coleção e também pode ser favoritado."
             />
-            <Controller
-              name="content"
-              control={control}
-              defaultValue=""
-              rules={{ required: true }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <TextArea
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  value={value ?? ""}
-                  placeholder="Conteúdo do cartão"
-                />
-              )}
-            />
-            <Select
-              title="Coleções"
-              values={collections}
-              defaultValue={collectionId as string}
-              onValueChange={(value) => setSelectedCollectionId(value)}
-            />
-            <XStack justifyContent="space-between">
-              <Label>Adicionar aos favoritos</Label>
-              <Switch
-                size={"$2"}
-                native
-                checked={isFavorite}
-                onCheckedChange={() => setIsFavorite(!isFavorite)}
-              >
-                <Switch.Thumb animation="quicker" />
-              </Switch>
-            </XStack>
-            <Form.Trigger asChild>
-              <Button icon={loading ? <Spinner /> : undefined}>
-                Criar cartão
-              </Button>
-            </Form.Trigger>
-          </Form>
+            <Form
+              onSubmit={handleSubmit(onSubmit)}
+              marginTop={32}
+              gap={24}
+              width="100%"
+            >
+              <Controller
+                name="title"
+                control={control}
+                defaultValue=""
+                rules={{ required: true }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    placeholder="Título do cartão"
+                  />
+                )}
+              />
+              <Controller
+                name="content"
+                control={control}
+                defaultValue=""
+                rules={{ required: true }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextArea
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    value={value ?? ""}
+                    placeholder="Conteúdo do cartão"
+                  />
+                )}
+              />
+              <Select
+                title="Coleções"
+                values={collections}
+                defaultValue={collectionId as string}
+                onValueChange={(value) => setSelectedCollectionId(value)}
+              />
+              <XStack justifyContent="space-between">
+                <Label>Adicionar aos favoritos</Label>
+                <Switch
+                  size={"$2"}
+                  native
+                  checked={isFavorite}
+                  onCheckedChange={() => setIsFavorite(!isFavorite)}
+                >
+                  <Switch.Thumb animation="quicker" />
+                </Switch>
+              </XStack>
+              <Form.Trigger asChild>
+                <Button icon={loading ? <Spinner /> : undefined}>
+                  Criar cartão
+                </Button>
+              </Form.Trigger>
+            </Form>
+          </View>
         </View>
       </ScrollView>
     </>

@@ -39,7 +39,7 @@ export default function Login() {
     }
 
     setStatus("submitted");
-    router.push("(app)/(tabs)");
+    router.navigate("(app)/(tabs)");
   };
 
   useEffect(() => {

@@ -26,7 +26,7 @@ export const Card = ({
       paddingTop={16}
       borderRadius={8}
       onPress={() =>
-        router.push({
+        router.navigate({
           pathname: `card/${card.id}`,
           params: {
             collectionIcon,

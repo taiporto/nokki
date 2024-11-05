@@ -17,7 +17,7 @@ export const CollectionCard = ({
       padding={16}
       paddingTop={12}
       borderRadius={8}
-      onPress={() => router.push(`(collections)/${collection.id}`)}
+      onPress={() => router.navigate(`(collections)/${collection.id}`)}
       gap={2}
       justifyContent="center"
       alignItems="center"
