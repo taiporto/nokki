@@ -78,7 +78,9 @@ export default function CollectionPage() {
         <IconButton
           iconElement={<Edit3 />}
           onPress={() =>
-            router.push(`(app)/(cards)/(collections)/${collectionId}/edit`)
+            router.push(
+              `(app)/(tabs)/(cards)/(collections)/${collectionId}/edit`
+            )
           }
         />
       </XStack>

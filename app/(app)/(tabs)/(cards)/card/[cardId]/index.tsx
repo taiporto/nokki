@@ -1,15 +1,15 @@
-import { H1, Text, View, XStack, YStack } from "tamagui";
-import BackgroundGradient from "../../../../_components/BackgroundGradient";
-import { useGlobalSearchParams, useLocalSearchParams } from "expo-router";
+import { H1, ScrollView, Text, View, XStack, YStack } from "tamagui";
+import BackgroundGradient from "../../../../../_components/BackgroundGradient";
+import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { TCard } from "../../../../../types";
-import { getCardById } from "../../../../../database/controllers/card/getCards";
-import BackButton from "../../../../_components/BackButton";
-import IconButton from "../../../../_components/IconButton";
+import { TCard } from "../../../../../../types";
+import { getCardById } from "../../../../../../database/controllers/card/getCards";
+import BackButton from "../../../../../_components/BackButton";
+import IconButton from "../../../../../_components/IconButton";
 import { Star, StarFull, StarOff } from "@tamagui/lucide-icons";
-import { CollectionIcon } from "../../../../_components/CollectionIcon";
-import Button from "../../../../_components/Button";
-import { updateIsFavorite } from "../../../../../database/controllers/card/updateCard";
+import { CollectionIcon } from "../../../../../_components/CollectionIcon";
+import Button from "../../../../../_components/Button";
+import { updateIsFavorite } from "../../../../../../database/controllers/card/updateCard";
 import Toast from "react-native-root-toast";
 
 export default function CardPage() {
@@ -50,9 +50,9 @@ export default function CardPage() {
   return (
     <>
       <BackgroundGradient />
-      <View padding={16} gap={40}>
+      <ScrollView padding={16} gap={40}>
         <XStack justifyContent="space-between">
-          <BackButton />
+          <BackButton onPress={() => router.navigate("../")} />
           <IconButton
             color="$warning"
             iconElement={icon}
@@ -77,9 +77,20 @@ export default function CardPage() {
               </Text>
             </YStack>
           </YStack>
-          <Button>Editar cartão</Button>
+          <Button
+            onPress={() =>
+              router.push({
+                pathname: `(app)/(tabs)/(cards)/card/${cardId}/edit`,
+                params: {
+                  card: JSON.stringify(card),
+                },
+              })
+            }
+          >
+            Editar cartão
+          </Button>
         </YStack>
-      </View>
+      </ScrollView>
     </>
   );
 }

@@ -49,11 +49,16 @@ export const Card = ({
         placeholder={extractPlaceholderFromIconUrl(collectionIcon)}
         contentFit="contain"
       />
-      <YStack>
-        <H2 fontSize="$5" lineHeight={"$3"}>
+      <YStack maxWidth="90%">
+        <H2
+          numberOfLines={1}
+          textOverflow="ellipsis"
+          fontSize="$5"
+          lineHeight={"$3"}
+        >
           {card.title}
         </H2>
-        <Text textOverflow="ellipsis" fontSize="$2">
+        <Text numberOfLines={1} textOverflow="ellipsis" fontSize="$2">
           {card.content}
         </Text>
       </YStack>

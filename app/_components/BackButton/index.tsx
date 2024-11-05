@@ -5,13 +5,14 @@ import IconButton from "../IconButton";
 
 export default function BackButton({
   size = "$2",
+  onPress,
   ...props
 }: ButtonProps & {
   size?: SizableTextProps["size"];
 }) {
   return (
     <IconButton
-      onPress={() => router.back()}
+      onPress={onPress ?? (() => router.back())}
       iconElement={<ArrowLeft size={size} />}
       {...props}
     />

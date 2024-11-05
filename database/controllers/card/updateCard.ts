@@ -4,20 +4,25 @@ import { db } from "../..";
 export const updateCard = async (
   cardId: UpdateCard["id"],
   newFieldData: UpdateCard
-): Promise<{ updatedId: number } | null> => {
+): Promise<boolean> => {
   try {
-    const { data, error } = await db
+    console.log({ cardId, newFieldData });
+    const { status, error } = await db
       .from(TableNames.CARDS)
       .update(newFieldData)
-      .eq("id", cardId)
-      .select();
+      .eq("id", cardId);
 
-    if (error) throw error;
+    console.log({ error, status });
+    if (error) {
+      throw error;
+    }
 
-    return { updatedId: data[0].id };
+    if ([200, 204].includes(status)) return true;
+
+    return false;
   } catch (error) {
     console.error(error);
-    return null;
+    return false;
   }
 };
 
@@ -26,7 +31,7 @@ export const updateIsFavorite = async (
   isFavorite: boolean
 ): Promise<boolean | null> => {
   try {
-    const { data, error } = await db
+    const { error } = await db
       .from(TableNames.CARDS)
       .update({ is_favorite: isFavorite })
       .eq("id", cardId)
