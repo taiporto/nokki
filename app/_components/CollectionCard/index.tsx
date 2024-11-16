@@ -6,9 +6,10 @@ import { collectionIcons } from "../../../assets/collection_icons";
 
 export const CollectionCard = ({
   collection,
+  onPress,
   ...cardProps
 }: {
-  collection: Pick<TCollection, "id" | "name" | "icon">;
+  collection: Pick<TCollection, "name" | "icon" | "id">;
 } & CardProps) => {
   return (
     <Card
@@ -17,7 +18,9 @@ export const CollectionCard = ({
       padding={16}
       paddingTop={12}
       borderRadius={8}
-      onPress={() => router.navigate(`(collections)/${collection.id}`)}
+      onPress={
+        onPress ?? (() => router.navigate(`(collections)/${collection.id}`))
+      }
       gap={2}
       justifyContent="center"
       alignItems="center"

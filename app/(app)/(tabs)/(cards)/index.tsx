@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  Stack,
-  Card,
-  XStack,
-  ScrollView,
-  Separator,
-} from "tamagui";
+import { View, Stack, Separator } from "tamagui";
 import { Plus } from "@tamagui/lucide-icons";
 import { getAllCollections } from "../../../../database/controllers/collection/getCollections";
 import { useEffect, useState } from "react";
@@ -16,11 +8,13 @@ import BackgroundGradient from "../../../_components/BackgroundGradient";
 import { CollectionCard } from "../../../_components/CollectionCard";
 import Button from "../../../_components/Button";
 import { router } from "expo-router";
-import { collectionIcons } from "../../../../assets/collection_icons";
 import { FlatList, Keyboard } from "react-native";
+import { FAVORITES_COLLECTION } from "../../../../constants";
 
 export default function AllCollections() {
   const [collections, setCollections] = useState<TCollection[] | null>(null);
+  const [collectionIcons, setCollectionIcons] =
+    useState<Map<TCollection["id"], TCollection["icon"]>>();
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
@@ -28,21 +22,23 @@ export default function AllCollections() {
       if (!collections) {
         return;
       }
+      const collectionIcons = new Map();
+      collections.forEach((collection) => {
+        collectionIcons.set(collection.id, collection.icon);
+      });
       setCollections(collections);
+      setCollectionIcons(collectionIcons);
     });
   }, []);
 
-  // set up this useEffect
   useEffect(() => {
     if (refreshing) {
-      // do your heavy or asynchronous data fetching & update your state
       getAllCollections().then((collections) => {
         if (!collections) {
           return;
         }
         setCollections(collections);
       });
-      // set the refreshing back to false
       setRefreshing(false);
     }
   }, [refreshing]);
@@ -59,11 +55,13 @@ export default function AllCollections() {
         >
           <CollectionCard
             width={"100%"}
-            collection={{
-              id: 0,
-              name: "Favoritos",
-              icon: collectionIcons["Illustration-38"].url,
-            }}
+            collection={FAVORITES_COLLECTION}
+            onPress={() =>
+              router.navigate({
+                pathname: "/favorites",
+                params: { collectionIcons: JSON.stringify(collectionIcons) },
+              })
+            }
           />
           <Separator
             marginVertical={24}
