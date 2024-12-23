@@ -59,7 +59,11 @@ export default function AllCollections() {
             onPress={() =>
               router.navigate({
                 pathname: "/favorites",
-                params: { collectionIcons: JSON.stringify(collectionIcons) },
+                params: {
+                  collectionIcons: JSON.stringify(
+                    Array.from(collectionIcons!.entries())
+                  ),
+                },
               })
             }
           />

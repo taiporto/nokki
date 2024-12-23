@@ -24,9 +24,12 @@ export const CollectionCardsList = ({
 }) => {
   const [refreshing, setRefreshing] = useState(false);
   const { collectionIcons: paramCollectionIcons } = useLocalSearchParams();
-  const collectionsIcons = new Map<TCollection["id"], TCollection["icon"]>(
-    JSON.parse(paramCollectionIcons as string)
-  );
+  const collectionsIcons =
+    paramCollectionIcons && Object.keys(paramCollectionIcons).length > 0
+      ? new Map<TCollection["id"], TCollection["icon"]>(
+          JSON.parse(paramCollectionIcons as string)
+        )
+      : new Map();
 
   useEffect(() => {
     if (refreshing) {
