@@ -4,7 +4,6 @@ import { TCard } from "../../../../../types";
 import { getFavoriteCards } from "../../../../../database/controllers/card/getCards";
 import { useAuth } from "../../../../../auth/context";
 import { FAVORITES_COLLECTION } from "../../../../../constants";
-import { useLocalSearchParams } from "expo-router";
 
 export default function Favorites() {
   const [collectionCards, setCollectionCards] = useState<TCard[]>([]);

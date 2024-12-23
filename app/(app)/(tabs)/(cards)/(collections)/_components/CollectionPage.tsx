@@ -17,6 +17,7 @@ export const CollectionPage = ({
   collectionCards,
   setCollectionCards,
 }: CollectionPageProps) => {
+  console.log({ collection });
   return (
     <>
       <BackgroundGradient />

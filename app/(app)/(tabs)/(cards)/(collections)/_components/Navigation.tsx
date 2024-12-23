@@ -13,17 +13,19 @@ export default function CollectionNavigation({
   return (
     <XStack padding={16} justifyContent="space-between">
       <BackButton size="$1" />
-      <IconButton
-        iconElement={<Edit3 />}
-        onPress={() =>
-          router.navigate({
-            pathname: `(app)/(tabs)/(cards)/(collections)/${collection.id}/edit`,
-            params: {
-              collection: JSON.stringify(collection),
-            },
-          })
-        }
-      />
+      {collection.id !== 0 && (
+        <IconButton
+          iconElement={<Edit3 />}
+          onPress={() =>
+            router.navigate({
+              pathname: `(app)/(tabs)/(cards)/(collections)/${collection.id}/edit`,
+              params: {
+                collection: JSON.stringify(collection),
+              },
+            })
+          }
+        />
+      )}
     </XStack>
   );
 }
