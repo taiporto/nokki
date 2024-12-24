@@ -1,17 +1,7 @@
 import { Circle } from "tamagui";
 import { Image, ImageProps } from "expo-image";
 import { Pressable } from "react-native";
-
-const sizes = {
-  small: {
-    size: 60,
-    padding: 12,
-  },
-  medium: {
-    size: 90,
-    padding: 16,
-  },
-};
+import { sizes } from "./constants";
 
 type CollectionIconProps = {
   imageUrl: string;

@@ -1,15 +1,17 @@
-import { FlatList } from "react-native";
+import { SwipeListView } from "react-native-swipe-list-view";
 import { TCard, TCollection } from "../../../../../../types";
 import { Card } from "../../../../../_components/Card";
 import { useEffect, useState } from "react";
 import { EmptyState } from "../../../../../_components/EmptyState";
 import { router, useLocalSearchParams } from "expo-router";
-import { Plus } from "@tamagui/lucide-icons";
-import { View } from "tamagui";
+import { Plus, Trash } from "@tamagui/lucide-icons";
+import { AlertDialog, View, XStack, YStack } from "tamagui";
 import {
   getCardsByCollectionId,
   getFavoriteCards,
 } from "../../../../../../database/controllers/card/getCards";
+import Button from "../../../../../_components/Button";
+import { deleteCardById } from "../../../../../../database/controllers/card/deleteCard";
 
 export const CollectionCardsList = ({
   cardsData,
@@ -17,8 +19,8 @@ export const CollectionCardsList = ({
   collection,
   isFavoriteCardsList,
 }: {
-  cardsData?: TCard[];
-  setCardsData?: (cards: TCard[]) => void;
+  cardsData: TCard[];
+  setCardsData: (cards: TCard[]) => void;
   collection: TCollection;
   isFavoriteCardsList: boolean;
 }) => {
@@ -55,7 +57,9 @@ export const CollectionCardsList = ({
   }, [refreshing]);
 
   return (
-    <FlatList
+    <SwipeListView
+      disableRightSwipe
+      rightOpenValue={-64}
       style={{ width: "100%", gap: 16 }}
       data={cardsData}
       renderItem={({ item }) => (
@@ -67,6 +71,81 @@ export const CollectionCardsList = ({
               : collection.icon
           }
         />
+      )}
+      renderHiddenItem={(data) => (
+        <AlertDialog native>
+          <AlertDialog.Trigger asChild>
+            <View
+              pressStyle={{ opacity: 0.9 }}
+              borderRadius={8}
+              paddingRight={16}
+              alignSelf="center"
+              width={"99%"}
+              height={"100%"}
+              backgroundColor="$negative"
+              justifyContent="center"
+              alignItems="flex-end"
+            >
+              <Trash size="$2" color="$offwhite" />
+            </View>
+          </AlertDialog.Trigger>
+
+          <AlertDialog.Portal>
+            <AlertDialog.Overlay
+              key="overlay"
+              animation="quick"
+              opacity={0.5}
+              enterStyle={{ opacity: 0 }}
+              exitStyle={{ opacity: 0 }}
+            />
+            <AlertDialog.Content
+              bordered
+              elevate
+              key="content"
+              animation={[
+                "quick",
+                {
+                  opacity: {
+                    overshootClamping: true,
+                  },
+                },
+              ]}
+              enterStyle={{ x: 0, y: -20, opacity: 0, scale: 0.9 }}
+              exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
+              x={0}
+              scale={1}
+              opacity={1}
+              y={0}
+            >
+              <YStack>
+                <AlertDialog.Title>Confirmar deleção</AlertDialog.Title>
+                <AlertDialog.Description>
+                  Você realmente quer deletar esse cartão? Ele não pode ser
+                  recuperado depois.
+                </AlertDialog.Description>
+
+                <XStack gap="$3" justifyContent="flex-end">
+                  <AlertDialog.Cancel asChild>
+                    <Button>Cancel</Button>
+                  </AlertDialog.Cancel>
+                  <AlertDialog.Action asChild>
+                    <Button
+                      onPress={() => {
+                        deleteCardById(data.item.id);
+                        setCardsData(
+                          cardsData!.filter((card) => card.id !== data.item.id)
+                        );
+                      }}
+                      theme="danger"
+                    >
+                      Deletar
+                    </Button>
+                  </AlertDialog.Action>
+                </XStack>
+              </YStack>
+            </AlertDialog.Content>
+          </AlertDialog.Portal>
+        </AlertDialog>
       )}
       keyExtractor={(item) => item.id.toString()}
       refreshing={refreshing}

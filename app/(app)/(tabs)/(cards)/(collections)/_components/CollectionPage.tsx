@@ -4,7 +4,7 @@ import BackgroundGradient from "../../../../../_components/BackgroundGradient";
 import CollectionNavigation from "../_components/Navigation";
 import CollectionHeader from "./CollectionHeader";
 import { CollectionCardsList } from "../_components/CollectionCardsList";
-import { router, useLocalSearchParams } from "expo-router";
+import { router } from "expo-router";
 import Button from "../../../../../_components/Button";
 import { Plus } from "@tamagui/lucide-icons";
 

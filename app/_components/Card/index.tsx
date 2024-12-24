@@ -37,7 +37,7 @@ export const Card = ({
       flexDirection="row"
       alignItems="center"
       justifyContent="flex-start"
-      pressStyle={{ opacity: 0.6 }}
+      pressStyle={{ backgroundColor: "$neutral100" }}
       {...cardProps}
     >
       <Image
