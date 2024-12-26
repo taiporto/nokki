@@ -11,16 +11,17 @@ import {
   getFavoriteCards,
 } from "../../../../../../database/controllers/card/getCards";
 import Button from "../../../../../_components/Button";
-import { deleteCardById } from "../../../../../../database/controllers/card/deleteCard";
 
 export const CollectionCardsList = ({
   cardsData,
   setCardsData,
+  deleteCard,
   collection,
   isFavoriteCardsList,
 }: {
   cardsData: TCard[];
   setCardsData: (cards: TCard[]) => void;
+  deleteCard: (cardId: TCard["id"]) => void;
   collection: TCollection;
   isFavoriteCardsList: boolean;
 }) => {
@@ -131,10 +132,7 @@ export const CollectionCardsList = ({
                   <AlertDialog.Action asChild>
                     <Button
                       onPress={() => {
-                        deleteCardById(data.item.id);
-                        setCardsData(
-                          cardsData!.filter((card) => card.id !== data.item.id)
-                        );
+                        deleteCard(data.item.id);
                       }}
                       theme="danger"
                     >

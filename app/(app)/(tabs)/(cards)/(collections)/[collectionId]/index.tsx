@@ -1,4 +1,5 @@
-import ContentLoader, { Rect, Circle, Path } from "react-content-loader/native";
+import React from "react";
+import ContentLoader, { Rect } from "react-content-loader/native";
 import { router, useLocalSearchParams } from "expo-router";
 import { getCollectionById } from "../../../../../../database/controllers/collection/getCollections";
 import { useEffect, useState } from "react";
@@ -7,12 +8,11 @@ import { Text } from "tamagui";
 import { getCardsByCollectionId } from "../../../../../../database/controllers/card/getCards";
 import { CollectionPage } from "../_components/CollectionPage";
 import BackgroundGradient from "../../../../../_components/BackgroundGradient";
-import { sizes } from "../../../../../_components/CollectionIcon/constants";
+import { useCollectionCards } from "./_hooks/useCollectionCards";
 
 export default function Collection() {
   const [collection, setCollection] = useState<TCollection>();
   const [loading, setLoading] = useState(false);
-  const [collectionCards, setCollectionCards] = useState<TCard[]>([]);
   const { collectionId } = useLocalSearchParams();
 
   useEffect(() => {
@@ -26,16 +26,6 @@ export default function Collection() {
       setCollection(collection);
     });
   }, [collectionId]);
-
-  useEffect(() => {
-    getCardsByCollectionId(+collectionId).then((cards) => {
-      if (!cards) {
-        console.error("Cards not found");
-        return;
-      }
-      setCollectionCards(cards);
-    });
-  }, [collection]);
 
   if (+collectionId === 0)
     return router.replace("/(app)/(tabs)/(cards)/(collections)/favorites");
@@ -58,11 +48,5 @@ export default function Collection() {
     );
   if (!collection) return <Text>Collection not found</Text>;
 
-  return (
-    <CollectionPage
-      collection={collection}
-      collectionCards={collectionCards}
-      setCollectionCards={setCollectionCards}
-    />
-  );
+  return <CollectionPage collection={collection} />;
 }

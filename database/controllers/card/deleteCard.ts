@@ -6,7 +6,8 @@ export async function deleteCardById(cardId: number): Promise<TCard | null> {
     const { data, error } = await db
       .from(TableNames.CARDS)
       .delete()
-      .eq("id", cardId);
+      .eq("id", cardId)
+      .select();
 
     if (error) throw error;
 
