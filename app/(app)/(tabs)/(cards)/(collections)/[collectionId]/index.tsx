@@ -5,15 +5,13 @@ import { getCollectionById } from "../../../../../../database/controllers/collec
 import { useEffect, useState } from "react";
 import { TCard, TCollection } from "../../../../../../types";
 import { Text } from "tamagui";
-import { getCardsByCollectionId } from "../../../../../../database/controllers/card/getCards";
 import { CollectionPage } from "../_components/CollectionPage";
 import BackgroundGradient from "../../../../../_components/BackgroundGradient";
-import { useCollectionCards } from "./_hooks/useCollectionCards";
 
 export default function Collection() {
+  const { collectionId } = useLocalSearchParams();
   const [collection, setCollection] = useState<TCollection>();
   const [loading, setLoading] = useState(false);
-  const { collectionId } = useLocalSearchParams();
 
   useEffect(() => {
     setLoading(true);

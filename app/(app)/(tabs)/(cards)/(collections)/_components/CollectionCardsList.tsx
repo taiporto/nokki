@@ -6,26 +6,23 @@ import { EmptyState } from "../../../../../_components/EmptyState";
 import { router, useLocalSearchParams } from "expo-router";
 import { Plus, Trash } from "@tamagui/lucide-icons";
 import { AlertDialog, View, XStack, YStack } from "tamagui";
-import {
-  getCardsByCollectionId,
-  getFavoriteCards,
-} from "../../../../../../database/controllers/card/getCards";
 import Button from "../../../../../_components/Button";
 
 export const CollectionCardsList = ({
-  cardsData,
-  setCardsData,
-  deleteCard,
+  cards,
   collection,
+  refreshing,
+  setRefreshing,
+  deleteCard,
   isFavoriteCardsList,
 }: {
-  cardsData: TCard[];
-  setCardsData: (cards: TCard[]) => void;
-  deleteCard: (cardId: TCard["id"]) => void;
+  cards: TCard[];
   collection: TCollection;
+  refreshing: boolean;
+  setRefreshing: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteCard: (cardId: TCard["id"]) => void;
   isFavoriteCardsList: boolean;
 }) => {
-  const [refreshing, setRefreshing] = useState(false);
   const { collectionIcons: paramCollectionIcons } = useLocalSearchParams();
   const collectionsIcons =
     paramCollectionIcons && Object.keys(paramCollectionIcons).length > 0
@@ -34,42 +31,19 @@ export const CollectionCardsList = ({
         )
       : new Map();
 
-  useEffect(() => {
-    if (refreshing) {
-      if (isFavoriteCardsList) {
-        getFavoriteCards().then((cards) => {
-          if (!cards) {
-            console.error("Cards not found");
-            return;
-          }
-          setCardsData?.(cards);
-        });
-      } else {
-        getCardsByCollectionId(collection.id).then((cards) => {
-          if (!cards) {
-            console.error("Cards not found");
-            return;
-          }
-          setCardsData?.(cards);
-        });
-      }
-      setRefreshing(false);
-    }
-  }, [refreshing]);
-
   return (
     <SwipeListView
       disableRightSwipe
       rightOpenValue={-64}
       style={{ width: "100%", gap: 16 }}
-      data={cardsData}
+      data={cards}
       renderItem={({ item }) => (
         <Card
           card={item}
           collectionIcon={
             isFavoriteCardsList
               ? collectionsIcons.get(item.collection_id!) ?? ""
-              : collection.icon
+              : collection!.icon
           }
         />
       )}
@@ -129,15 +103,12 @@ export const CollectionCardsList = ({
                   <AlertDialog.Cancel asChild>
                     <Button>Cancel</Button>
                   </AlertDialog.Cancel>
-                  <AlertDialog.Action asChild>
-                    <Button
-                      onPress={() => {
-                        deleteCard(data.item.id);
-                      }}
-                      theme="danger"
-                    >
-                      Deletar
-                    </Button>
+                  <AlertDialog.Action
+                    onPress={() => {
+                      deleteCard(data.item.id);
+                    }}
+                  >
+                    Deletar
                   </AlertDialog.Action>
                 </XStack>
               </YStack>
@@ -159,8 +130,8 @@ export const CollectionCardsList = ({
               router.navigate({
                 pathname: "/(app)/(tabs)/(cards)/createCard",
                 params: {
-                  collectionId: collection.id,
-                  collectionName: collection.name,
+                  collectionId: collection!.id,
+                  collectionName: collection!.name,
                 },
               });
             },
