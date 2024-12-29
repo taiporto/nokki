@@ -1,3 +1,4 @@
+import React from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import {
   Form,
@@ -62,7 +63,12 @@ export default function CreateCard() {
     }
 
     setLoading(false);
-    router.replace(`(tabs)/(cards)/card/${result.insertedId}`);
+    router.replace({
+      pathname: `/card/${result.insertedId}`,
+      params: {
+        collectionId: selectedCollectionId,
+      },
+    });
   };
 
   return (

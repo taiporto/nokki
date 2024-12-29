@@ -8,80 +8,75 @@ import { CollectionCardsList } from "../_components/CollectionCardsList";
 import { router, useLocalSearchParams } from "expo-router";
 import Button from "../../../../../_components/Button";
 import { Plus } from "@tamagui/lucide-icons";
-import { Computed, useObservable } from "@legendapp/state/react";
-import { syncedDatabase } from "../../../../../../lib/legend-state";
-import { syncState } from "@legendapp/state";
+import { Computed } from "@legendapp/state/react";
+import useCollectionCards from "../[collectionId]/_hooks/useCollectionCards";
+import { FAVORITES_COLLECTION } from "../../../../../../constants";
+import { useAuth } from "../../../../../../auth/context";
+import { getCollectionById } from "../../../../../../database/controllers/collection/getCollections";
 
-export const CollectionPage = ({ collection }: { collection: TCollection }) => {
+export const CollectionPage = () => {
+  const { user } = useAuth();
   const { collectionId } = useLocalSearchParams();
-  const [refreshing, setRefreshing] = useState(false);
+  const { refreshing, setRefreshing, deleteCard, cards$ } =
+    useCollectionCards();
 
-  console.log(collection);
-
-  const cards$ = useObservable(
-    syncedDatabase({
-      collection: TableNames.CARDS,
-      select: (from) => {
-        if (collection.id === 0) {
-          return from.select().eq("is_favorite", true);
-        }
-        return from.select().eq("collection_id", +collectionId);
-      },
-      delete: (from, id) => from.update({ deleted: true }).eq("id", id),
-      initial: {},
-    })
-  );
-  const cardsState$ = syncState(cards$);
-
-  const deleteCard = (cardId: TCard["id"]) => {
-    cards$[cardId].delete();
-    refreshCards();
-  };
-
-  const refreshCards = () => {
-    cardsState$.sync().then(() => setRefreshing(false));
-  };
+  const [collection, setCollection] = useState<TCollection | null>(null);
 
   useEffect(() => {
-    if (refreshing) {
-      refreshCards();
+    if (+collectionId === 0) {
+      setCollection({
+        ...FAVORITES_COLLECTION,
+        user_uuid: user?.id || "",
+      });
+    } else {
+      getCollectionById(+collectionId).then((result) => {
+        setCollection(result);
+      });
     }
-  }, [refreshing]);
+  }, [collectionId]);
 
-  return (
+  return collection ? (
     <>
-      <BackgroundGradient />
-      <CollectionNavigation collection={collection} />
-      <View gap={52} paddingHorizontal={32}>
-        <CollectionHeader collection={collection} />
-        <Computed>
-          {() => (
-            <CollectionCardsList
-              collection={collection}
-              refreshing={refreshing}
-              setRefreshing={setRefreshing}
-              deleteCard={deleteCard}
-              cards={Object.values(cards$.get()) as unknown as TCard[]}
-              isFavoriteCardsList={collection.id === 0}
-            />
-          )}
-        </Computed>
-      </View>
       <Computed>
-        {() =>
-          collection.id !== 0 && (
-            <View position="absolute" right={16} bottom={32}>
-              <Button
-                icon={<Plus />}
-                borderRadius={100}
-                onPress={() => router.navigate("/createCard")}
-              >
-                Criar cartão
-              </Button>
+        {() => (
+          <>
+            <BackgroundGradient />
+            <CollectionNavigation collection={collection} />
+            <View gap={52} paddingHorizontal={32}>
+              <CollectionHeader collection={collection} />
+              <Computed>
+                {() => (
+                  <CollectionCardsList
+                    collection={collection}
+                    refreshing={refreshing}
+                    setRefreshing={setRefreshing}
+                    deleteCard={deleteCard}
+                    cards={Object.values(cards$.get()) as unknown as TCard[]}
+                    isFavoriteCardsList={+collectionId === 0}
+                  />
+                )}
+              </Computed>
             </View>
-          )
-        }
+            <Computed>
+              {() =>
+                +collectionId !== 0 && (
+                  <View position="absolute" right={16} bottom={32}>
+                    <Button
+                      icon={<Plus />}
+                      borderRadius={100}
+                      onPress={() => router.navigate("/createCard")}
+                    >
+                      Criar cartão
+                    </Button>
+                  </View>
+                )
+              }
+            </Computed>
+          </>
+        )}
       </Computed>
     </>
+  ) : (
+    <></>
   );
 };

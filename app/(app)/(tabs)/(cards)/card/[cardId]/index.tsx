@@ -1,3 +1,4 @@
+import React from "react";
 import { H1, ScrollView, Text, View, XStack, YStack } from "tamagui";
 import BackgroundGradient from "../../../../../_components/BackgroundGradient";
 import { router, useLocalSearchParams } from "expo-router";
@@ -11,12 +12,13 @@ import { CollectionIcon } from "../../../../../_components/CollectionIcon";
 import Button from "../../../../../_components/Button";
 import { updateIsFavorite } from "../../../../../../database/controllers/card/updateCard";
 import Toast from "react-native-root-toast";
+import useCollections from "../../_hooks/useCollections";
 
 export default function CardPage() {
+  const { collectionIcons$ } = useCollections();
   const [card, setCard] = useState<TCard>();
-  const { cardId, collectionIcon } = useLocalSearchParams<{
+  const { cardId } = useLocalSearchParams<{
     cardId: string;
-    collectionIcon?: string;
   }>();
   const [isFavorite, setIsFavorite] = useState<boolean>();
 
@@ -47,7 +49,7 @@ export default function CardPage() {
     });
   }, []);
 
-  return (
+  return card ? (
     <>
       <BackgroundGradient />
       <ScrollView padding={16} gap={40}>
@@ -61,7 +63,9 @@ export default function CardPage() {
         </XStack>
         <YStack gap={100} alignItems="center" justifyContent="space-between">
           <YStack gap={4} alignItems="center" justifyContent="center">
-            <CollectionIcon imageUrl={collectionIcon as string} />
+            <CollectionIcon
+              imageUrl={collectionIcons$.get()[card.collection_id!] as string}
+            />
             <YStack gap={32} alignItems="center" justifyContent="center">
               <H1 fontSize="$6" fontWeight={500}>
                 {card?.title}
@@ -92,5 +96,7 @@ export default function CardPage() {
         </YStack>
       </ScrollView>
     </>
+  ) : (
+    <>Loading</>
   );
 }
