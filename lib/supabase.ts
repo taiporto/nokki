@@ -4,7 +4,7 @@ import { mmkvAuthStorageConfig } from "./mmkv";
 
 const supabase = createClient(
   process.env.EXPO_PUBLIC_SUPABASE_URL ?? "",
-  process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? "",
+  process.env.EXPO_PUBLIC_SUPABASE_KEY ?? "",
   {
     auth: {
       storage: mmkvAuthStorageConfig,
